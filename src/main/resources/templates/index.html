@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8" />
+<base href="/" />
+<title>Web IRPF Application</title>
+<link rel="shortcut icon" href="img/icon/favicon.ico" />
+<link rel="icon" href="/img/icon/favicon.jpg" />
+<link rel='stylesheet'
+	href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic'
+	type='text/css' />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet"
+	href="js/angular-material/angular-material.min.css" />
+<script src="js/angular-1.6.2/angular.min.js"></script>
+<script src="js/angular-1.6.2/angular-route.min.js"></script>
+<script src="js/angular-1.6.2/angular-resource.min.js"></script>
+<script src="js/angular-1.6.2/angular-sanitize.min.js"></script>
+<script src="js/angular-1.6.2/angular-animate.min.js"></script>
+<script src="js/angular-1.6.2/angular-aria.min.js"></script>
+<script src="js/angular-1.6.2/angular-messages.min.js"></script>
+<script src="js/angular-material/angular-material.min.js"></script>
+<script src="js/webirpf.js"></script>
+<script src="js/controller/menu-controller.js"></script>
+<script src="js/controller/book-controller.js"></script>
+</head>
+<body ng-app="webirpf">
+	<div align="center">
+		<md-toolbar class="md-accent md-hue-3 menu-toolbar" ng-controller="MenuController">
+		<div class="md-toolbar-tools">
+			<span flex=""></span>
+			<div class="lock-size" layout="row" layout-align="center bottom">
+				<md-button aria-label="Home" class="md-raised md-primary md-hue-3"
+					ng-click="goto('/home')"> <md-tooltip
+					md-direction="bottom" md-visible="tooltipVisible">Home</md-tooltip>
+				<md-icon class="md-accent">home</md-icon></md-button>
+				<md-button aria-label="Empresa"
+					class="md-raised md-primary md-hue-3" ng-click="goto('/book')">
+				<md-tooltip md-direction="bottom" md-visible="tooltipVisible">Book</md-tooltip>
+				<md-icon class="md-accent">location_city</md-icon> </md-button>
+			</div>
+			<span flex=""></span>
+		</div>
+		</md-toolbar>
+		<ng-view></ng-view>
+	</div>
+</body>
+</html>
