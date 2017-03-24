@@ -9,33 +9,36 @@
 		$scope.book = {};
 		$scope.length = null;
 		$scope.loadBooks = LoadBooks;
-		$scope.submit = SubmitBook;
-		$scope.del = DeleteBook;
-		$scope.edit = EditBook;
-		
+		$scope.addBook = AddBook;
+		$scope.deleteBook = DeleteBook;
+		$scope.editBook = EditBook;
+		$scope.cleanForm = CleanForm;
+		$scope.showHints = false;
+
 		function LoadBooks() {
 			$http.get('/books').then(function(response) {
 				$scope.books = response.data;
 				$scope.length = response.data.length;
-				$scope.book = {};
+				$log.debug(response);
 			});
 		}
 
-		function SubmitBook() {
+		function AddBook() {
+			$scope.showHints = false;
 			$http({
 				method : 'POST',
-				data: this.book,
+				data : this.book,
 				url : 'books'
 			}).then(function successCallback(response) {
-				LoadBooks();
+				CleanForm();
 				$log.debug(response);
 			}, function errorcallback(response) {
+				$scope.showHints = true;
 				$log.debug(response);
 			});
 		}
-		
+
 		function DeleteBook() {
-			$log.debug(this.book);
 			$http({
 				method : 'DELETE',
 				url : 'books/' + this.book.id
@@ -46,9 +49,17 @@
 				$log.debug(response);
 			});
 		}
-		
-		function EditBook(){
+
+		function EditBook() {
 			$scope.book = this.book;
+		}
+
+		function CleanForm() {
+			$scope.bookForm.$setPristine();
+			$scope.bookForm.$setUntouched();
+			$scope.showHints = false;
+			$scope.book = {};
+			LoadBooks();
 		}
 
 		$log.debug('Book Controller Is Loaded !');

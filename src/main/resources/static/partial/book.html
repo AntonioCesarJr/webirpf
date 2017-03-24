@@ -1,14 +1,25 @@
 <div ng-controller="BookController">
 	<h2>Book</h2>
-	<form ng-submit="submit()" method="POST">
-		<input type="hidden" ng-model="book.id" name="id" /> <label
-			for="name">Name</label> <input type="text" ng-model="book.name"
+	<form name="bookForm" novalidate method="POST"
+		ng-submit="addBook(book)">
+		<input type="hidden" ng-model="book.id" name="id" />
+		<md-input-container> <label>Name</label> <input
+			ng-model="book.name" required maxlength="50"  md-no-asterisk
 			name="name" />
-		<button type="submit">Gravar</button>
+		<div ng-messages="bookForm.name.$error" ng-show="showHints">
+			<div ng-message="required">This is required.</div>
+			<div ng-message="md-maxlength">The description must be less
+				than 50 characters long.</div>
+		</div>
+		</md-input-container>
+		<div>
+			<md-button type="submit">Submit</md-button>
+			<md-button ng-click="cleanForm()">Clean</md-button>
+		</div>
 	</form>
 
 	<hr />
-	<button ng-click="loadBooks()">Carregar Livros</button>
+	<md-button ng-click="loadBooks()">Carregar Livros</md-button>
 	<table>
 		<thead>
 			<tr align="center">
@@ -22,8 +33,8 @@
 			<tr ng-repeat="book in books">
 				<td>{{book.id}}</td>
 				<td>{{book.name}}</td>
-				<td><button ng-click="del(book)">Delete</button></td>
-				<td><button ng-click="edit(book)">Edit</button></td>
+				<td><md-button ng-click="deleteBook(book)">Delete</md-button></td>
+				<td><md-button ng-click="editBook(book)">Edit</md-button></td>
 
 			</tr>
 		</tbody>
