@@ -12,7 +12,7 @@
 		$scope.addBook = AddBook;
 		$scope.deleteBook = DeleteBook;
 		$scope.editBook = EditBook;
-		$scope.cleanForm = CleanForm;
+		$scope.cancelForm = CancelForm;
 		$scope.showHints = false;
 
 		function LoadBooks() {
@@ -31,6 +31,7 @@
 				url : 'books'
 			}).then(function successCallback(response) {
 				CleanForm();
+				LoadBooks();
 				$log.debug(response);
 			}, function errorcallback(response) {
 				$scope.showHints = true;
@@ -43,6 +44,7 @@
 				method : 'DELETE',
 				url : 'books/' + this.book.id
 			}).then(function successCallback(response) {
+				CleanForm();
 				LoadBooks();
 				$log.debug(response);
 			}, function errorcallback(response) {
@@ -53,15 +55,20 @@
 		function EditBook() {
 			$scope.book = this.book;
 		}
+		
+		function CancelForm(){
+			CleanForm();
+			LoadBooks();
+		}
 
 		function CleanForm() {
 			$scope.bookForm.$setPristine();
 			$scope.bookForm.$setUntouched();
 			$scope.showHints = false;
 			$scope.book = {};
-			LoadBooks();
 		}
-
+		
+		LoadBooks();
 		$log.debug('Book Controller Is Loaded !');
 	}
 })();

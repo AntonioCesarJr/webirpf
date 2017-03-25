@@ -1,48 +1,44 @@
 <div ng-controller="BookController">
-	<h2>Book</h2>
-	<form name="bookForm" novalidate method="POST"
-		ng-submit="addBook(book)">
-		<input type="hidden" ng-model="book.id" name="id" />
-		<md-input-container> <label>Name</label> <input
-			ng-model="book.name" required maxlength="50"  md-no-asterisk
-			name="name" />
-		<div ng-messages="bookForm.name.$error" ng-show="showHints">
-			<div ng-message="required">This is required.</div>
-			<div ng-message="md-maxlength">The description must be less
-				than 50 characters long.</div>
+	<div layout="row" flex>
+		<div flex="30">
+			<md-content flex layout-padding>
+			<form name="bookForm" novalidate method="POST"
+				ng-submit="addBook(book)">
+				<input type="hidden" ng-model="book.id" name="id" />
+				<md-input-container> <label>Name</label> <input
+					ng-model="book.name" required maxlength="50" md-no-asterisk
+					name="name" />
+				<div ng-messages="bookForm.name.$error" ng-show="showHints">
+					<div ng-message="required">This is required.</div>
+					<div ng-message="md-maxlength">The description must be less
+						than 50 characters long.</div>
+				</div>
+				</md-input-container>
+				<div>
+					<md-button class="md-fab md-primary md-hue-3" type="submit"
+						aria-label="Save" title="Save"> <md-icon>save</md-icon>
+					</md-button>
+					<md-button class="md-fab md-warn md-hue-3" ng-click="cancelForm()"
+						aria-label="Clear" title="Clear"> <md-icon>clear</md-icon>
+					</md-button>
+				</div>
+			</form>
+			</md-content>
 		</div>
-		</md-input-container>
-		<div>
-			<md-button type="submit">Submit</md-button>
-			<md-button ng-click="cleanForm()">Clean</md-button>
+		<div flex="70">
+			<md-content> <md-list flex> <md-subheader
+				class="md-no-sticky">Books / <span><b>Total
+					= </b></span> <span align="center">{{length}}</span></md-subheader> <md-list-item
+				class="md-3-line" ng-repeat="book in books" ng-click="null">
+			<div class="md-list-item-text" layout="row">
+				<span>{{book.id}}</span>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<span>{{book.name}}</span>
+			</div>
+			<md-button ng-click="deleteBook(book)" aria-label="Delete"
+				title="Delete" class="md-fab md-warn md-hue-3"> <md-icon>delete_forever</md-icon>
+			</md-button> <md-button ng-click="editBook(book)" aria-label="Edit" title="Edit"
+				class="md-fab md-accent md-hue-3"> <md-icon>edit</md-icon>
+			</md-button> </md-list-item> </md-list> </md-content>
 		</div>
-	</form>
-
-	<hr />
-	<md-button ng-click="loadBooks()">Carregar Livros</md-button>
-	<table>
-		<thead>
-			<tr align="center">
-				<th>Id</th>
-				<th>Name</th>
-				<th>Delete</th>
-				<th>Edit</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="book in books">
-				<td>{{book.id}}</td>
-				<td>{{book.name}}</td>
-				<td><md-button ng-click="deleteBook(book)">Delete</md-button></td>
-				<td><md-button ng-click="editBook(book)">Edit</md-button></td>
-
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr ng-if="length > 0">
-				<td colspan="3" align="right"><b>Total</b></td>
-				<td align="center">{{length}}</td>
-			</tr>
-		</tfoot>
-	</table>
+		<div flex="10"></div>
+	</div>
 </div>
