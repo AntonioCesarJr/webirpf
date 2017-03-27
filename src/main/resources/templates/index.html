@@ -26,8 +26,13 @@
 <script src="js/webirpf.js"></script>
 <script src="js/controller/menu-controller.js"></script>
 <script src="js/controller/book-controller.js"></script>
+<style type="text/css">
+[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none !important;
+}
+</style>
 </head>
-<body ng-app="webirpf">
+<body ng-app="webirpf" ng-cloak="" class="ng-cloak">
 	<div align="center">
 		<md-toolbar class="menu-toolbar" ng-controller="MenuController">
 		<div class="md-toolbar-tools">
@@ -37,9 +42,9 @@
 					ng-click="goto('/home')"> <md-tooltip
 					md-direction="bottom" md-visible="tooltipVisible">Home</md-tooltip>
 				<md-icon>home</md-icon></md-button>
-				<md-button aria-label="Empresa"
-					class="md-raised" ng-click="goto('/book')">
-				<md-tooltip md-direction="bottom" md-visible="tooltipVisible">Book</md-tooltip>
+				<md-button aria-label="Empresa" class="md-raised"
+					ng-click="goto('/book')"> <md-tooltip
+					md-direction="bottom" md-visible="tooltipVisible">Book</md-tooltip>
 				<md-icon>location_city</md-icon> </md-button>
 			</div>
 			<span flex=""></span>
