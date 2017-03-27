@@ -1,0 +1,34 @@
+<div align="center">
+	<div ng-show="controller.error">There was a problem logging in.
+		Please try again.</div>
+	<form name="loginForm" method="post" novalidate="novalidate"
+		ng-submit="LoginController.login()">
+		<div>
+			<md-input-container> <label for="username">Username:</label>
+			<input type="text" id="username" name="username" required
+				ng-model="LoginController.credentials.username" /></md-input-container>
+		</div>
+		<div>
+			<md-input-container> <label for="password">Password:</label>
+			<input type="password" id="password" name="password" required
+				ng-model="LoginController.credentials.password" /></md-input-container>
+		</div>
+		<div ng-messages="loginForm.username.$error" ng-show="showHints">
+			<div ng-message="required">This is required.</div>
+			<div ng-message="md-maxlength">The description must be less
+				than 50 characters long.</div>
+		</div>
+		<div ng-messages="loginForm.password.$error" ng-show="showHints">
+			<div ng-message="required">This is required.</div>
+			<div ng-message="md-maxlength">The description must be less
+				than 50 characters long.</div>
+		</div>
+		<div>
+			<md-button class="md-fab md-primary" type="submit" aria-label="Login"
+				title="Login"> <md-icon>save</md-icon> </md-button>
+			<md-button class="md-fab md-warn"
+				aria-label="Clear" title="Clear"> <md-icon>clear</md-icon>
+			</md-button>
+		</div>
+	</form>
+</div>

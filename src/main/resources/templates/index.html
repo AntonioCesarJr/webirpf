@@ -6,8 +6,8 @@
 <meta charset="UTF-8" />
 <base href="/" />
 <title>Web IRPF Application</title>
-<link rel="shortcut icon" href="img/icon/favicon.ico" />
-<link rel="icon" href="/img/icon/favicon.jpg" />
+<link rel="shortcut icon" href="img/icon/lion-icon.ico" />
+<link rel="icon" href="/img/icon/lion-icon.jpg" />
 <link rel='stylesheet'
 	href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic'
 	type='text/css' />
@@ -24,6 +24,7 @@
 <script src="js/angular-1.6.2/angular-messages.min.js"></script>
 <script src="js/angular-material/angular-material.min.js"></script>
 <script src="js/webirpf.js"></script>
+<script src="js/controller/login-controller.js"></script>
 <script src="js/controller/menu-controller.js"></script>
 <script src="js/controller/book-controller.js"></script>
 <style type="text/css">
@@ -46,6 +47,10 @@
 					ng-click="goto('/book')"> <md-tooltip
 					md-direction="bottom" md-visible="tooltipVisible">Book</md-tooltip>
 				<md-icon>location_city</md-icon> </md-button>
+				<md-button aria-label="Login" class="md-raised"
+					ng-click="goto('/login')"> <md-tooltip
+					md-direction="bottom" md-visible="tooltipVisible">Login</md-tooltip>
+				<md-icon>account_circle</md-icon> </md-button>
 			</div>
 			<span flex=""></span>
 		</div>

@@ -8,8 +8,12 @@ angular.module(
 
 			$routeProvider.when('/', {
 				templateUrl : "/partial/home.html"
+			}).when('/login', {
+				templateUrl : "/partial/login.html",
+				controller: 'LoginController'
 			}).when('/book', {
-				templateUrl : "/partial/book.html"
+				templateUrl : "/partial/book.html",
+				controller: 'BookController'
 			}).otherwise('/');
 			
 			$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -24,9 +28,9 @@ angular.module(
 			});
 			$mdThemingProvider.definePalette('neonRed', neonRedMap);
 
-//			$mdThemingProvider.theme('default').primaryPalette('indigo')
-//					.accentPalette('deep-orange').warnPalette('red')
-//					.backgroundPalette('yellow').dark();
+			$mdThemingProvider.theme('default').primaryPalette('indigo')
+			.accentPalette('green').warnPalette('neonRed');
+			
 		}).run(function($log) {
 	$log.debug("Congratulations !! WebSite is running!");
 });

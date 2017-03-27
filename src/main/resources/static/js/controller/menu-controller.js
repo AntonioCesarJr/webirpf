@@ -10,7 +10,7 @@
 				$location.url(page);
 			};
 			
-			$log.debug('Book Controller Is Loaded !');
+			$log.debug('Menu Controller Is Loaded !');
 		};
 })();		
 
