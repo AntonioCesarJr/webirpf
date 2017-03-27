@@ -29,18 +29,18 @@
 </head>
 <body ng-app="webirpf">
 	<div align="center">
-		<md-toolbar class="md-accent md-hue-3 menu-toolbar" ng-controller="MenuController">
+		<md-toolbar class="menu-toolbar" ng-controller="MenuController">
 		<div class="md-toolbar-tools">
 			<span flex=""></span>
 			<div class="lock-size" layout="row" layout-align="center bottom">
-				<md-button aria-label="Home" class="md-raised md-primary md-hue-3"
+				<md-button aria-label="Home" class="md-raised"
 					ng-click="goto('/home')"> <md-tooltip
 					md-direction="bottom" md-visible="tooltipVisible">Home</md-tooltip>
-				<md-icon class="md-accent">home</md-icon></md-button>
+				<md-icon>home</md-icon></md-button>
 				<md-button aria-label="Empresa"
-					class="md-raised md-primary md-hue-3" ng-click="goto('/book')">
+					class="md-raised" ng-click="goto('/book')">
 				<md-tooltip md-direction="bottom" md-visible="tooltipVisible">Book</md-tooltip>
-				<md-icon class="md-accent">location_city</md-icon> </md-button>
+				<md-icon>location_city</md-icon> </md-button>
 			</div>
 			<span flex=""></span>
 		</div>

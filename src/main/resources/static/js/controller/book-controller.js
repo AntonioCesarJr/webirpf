@@ -23,7 +23,7 @@
 			});
 		}
 
-		function AddBook() {
+		function AddBook(book) {
 			$scope.showHints = false;
 			$http({
 				method : 'POST',
@@ -39,24 +39,26 @@
 			});
 		}
 
-		function DeleteBook() {
-			$http({
-				method : 'DELETE',
-				url : 'books/' + this.book.id
-			}).then(function successCallback(response) {
-				CleanForm();
-				LoadBooks();
-				$log.debug(response);
-			}, function errorcallback(response) {
-				$log.debug(response);
-			});
+		function DeleteBook(book) {
+			if (confirm("Are you sure! " + book.name + ' will be deleted!')) {
+				$http({
+					method : 'DELETE',
+					url : 'books/' + this.book.id
+				}).then(function successCallback(response) {
+					CleanForm();
+					LoadBooks();
+					$log.debug(response);
+				}, function errorcallback(response) {
+					$log.debug(response);
+				});
+			}
 		}
 
-		function EditBook() {
-			$scope.book = this.book;
+		function EditBook(book) {
+			$scope.book = book;
 		}
-		
-		function CancelForm(){
+
+		function CancelForm() {
 			CleanForm();
 			LoadBooks();
 		}
@@ -67,7 +69,7 @@
 			$scope.showHints = false;
 			$scope.book = {};
 		}
-		
+
 		LoadBooks();
 		$log.debug('Book Controller Is Loaded !');
 	}
