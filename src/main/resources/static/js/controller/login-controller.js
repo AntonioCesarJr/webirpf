@@ -24,8 +24,10 @@
 			}).then(function(response) {
 				if (response.data.name) {
 					$rootScope.authenticated = true;
+					$rootScope.userrrName = response.data.name; 
 				} else {
 					$rootScope.authenticated = false;
+					$rootScope.userrrName = "";
 				}
 				callback && callback();
 			}, function() {
@@ -54,6 +56,7 @@
 		self.logout = function() {
 			  $http.post('logout', {}).finally(function() {
 			    $rootScope.authenticated = false;
+			    $rootScope.userrrName = "";
 			    $location.path("/");
 			  });
 			}

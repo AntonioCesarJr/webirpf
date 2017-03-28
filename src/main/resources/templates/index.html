@@ -48,7 +48,7 @@
 					ng-click="loginCtrl.goto('/book')"> <md-tooltip
 					md-direction="bottom" md-visible="tooltipVisible">Book</md-tooltip>
 				<md-icon>location_city</md-icon> </md-button>
-				<md-button aria-label="Login" class="md-raised md-warn"
+								<md-button aria-label="Login" class="md-raised md-warn"
 					ng-click="loginCtrl.goto('/login')" ng-show="!authenticated">
 				<md-tooltip md-direction="bottom" md-visible="tooltipVisible">Login</md-tooltip>
 				<md-icon>account_circle</md-icon> </md-button>
@@ -57,6 +57,8 @@
 				<md-tooltip md-direction="bottom" md-visible="tooltipVisible">Logout</md-tooltip>
 				<md-icon>account_circle</md-icon></md-button>
 			</div>
+				<md-switch ng-model="authenticated" aria-label="Logged">
+				{{userrrName}} </md-switch>
 			<span flex=""></span>
 		</div>
 		</md-toolbar>

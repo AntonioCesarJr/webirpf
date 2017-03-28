@@ -30,7 +30,7 @@ angular.module(
 			$mdThemingProvider.definePalette('neonRed', neonRedMap);
 
 			$mdThemingProvider.theme('default').primaryPalette('indigo')
-			.accentPalette('green').warnPalette('neonRed');
+			.accentPalette('orange').warnPalette('neonRed');
 			
 		}).run(function($log) {
 	$log.debug("Congratulations !! WebSite is running!");

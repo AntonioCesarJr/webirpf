@@ -27,7 +27,6 @@ public class WebIRPFApplication {
 					.permitAll().antMatchers("/login/**").permitAll().antMatchers("/partial/home.html").permitAll()
 					.anyRequest().authenticated();
 			http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-			// .antMatchers("/**").permitAll()
 		}
 	}
 }
