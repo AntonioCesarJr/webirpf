@@ -2,16 +2,16 @@
 	<div ng-show="controller.error">There was a problem logging in.
 		Please try again.</div>
 	<form name="loginForm" method="post" novalidate="novalidate"
-		ng-submit="LoginController.login()">
+		ng-submit="loginCtrl.login()">
 		<div>
 			<md-input-container> <label for="username">Username:</label>
 			<input type="text" id="username" name="username" required
-				ng-model="LoginController.credentials.username" /></md-input-container>
+				ng-model="loginCtrl.credentials.username" /></md-input-container>
 		</div>
 		<div>
 			<md-input-container> <label for="password">Password:</label>
 			<input type="password" id="password" name="password" required
-				ng-model="LoginController.credentials.password" /></md-input-container>
+				ng-model="loginCtrl.credentials.password" /></md-input-container>
 		</div>
 		<div ng-messages="loginForm.username.$error" ng-show="showHints">
 			<div ng-message="required">This is required.</div>

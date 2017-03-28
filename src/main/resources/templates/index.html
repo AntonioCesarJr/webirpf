@@ -35,22 +35,27 @@
 </head>
 <body ng-app="webirpf" ng-cloak="" class="ng-cloak">
 	<div align="center">
-		<md-toolbar class="menu-toolbar" ng-controller="MenuController">
+		<md-toolbar class="menu-toolbar"
+			ng-controller="LoginController as loginCtrl">
 		<div class="md-toolbar-tools">
 			<span flex=""></span>
 			<div class="lock-size" layout="row" layout-align="center bottom">
 				<md-button aria-label="Home" class="md-raised"
-					ng-click="goto('/home')"> <md-tooltip
+					ng-click="loginCtrl.goto('/home')"> <md-tooltip
 					md-direction="bottom" md-visible="tooltipVisible">Home</md-tooltip>
 				<md-icon>home</md-icon></md-button>
 				<md-button aria-label="Empresa" class="md-raised"
-					ng-click="goto('/book')"> <md-tooltip
+					ng-click="loginCtrl.goto('/book')"> <md-tooltip
 					md-direction="bottom" md-visible="tooltipVisible">Book</md-tooltip>
 				<md-icon>location_city</md-icon> </md-button>
-				<md-button aria-label="Login" class="md-raised"
-					ng-click="goto('/login')"> <md-tooltip
-					md-direction="bottom" md-visible="tooltipVisible">Login</md-tooltip>
+				<md-button aria-label="Login" class="md-raised md-warn"
+					ng-click="loginCtrl.goto('/login')" ng-show="!authenticated">
+				<md-tooltip md-direction="bottom" md-visible="tooltipVisible">Login</md-tooltip>
 				<md-icon>account_circle</md-icon> </md-button>
+				<md-button aria-label="Logout" class="md-raised md-accent"
+					ng-click="loginCtrl.logout()" ng-show="authenticated">
+				<md-tooltip md-direction="bottom" md-visible="tooltipVisible">Logout</md-tooltip>
+				<md-icon>account_circle</md-icon></md-button>
 			</div>
 			<span flex=""></span>
 		</div>

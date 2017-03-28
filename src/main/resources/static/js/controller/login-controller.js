@@ -5,6 +5,57 @@
 	LoginController.$inject = [ '$rootScope', '$http', '$location', '$log' ];
 
 	function LoginController($rootScope, $http, $location, $log) {
-		$log.debug('Login Controller Is Loaded !');
+		var self = this
+		
+		self.goto = function(page){
+			$location.url(page);
+		};
+
+		var authenticate = function(credentials, callback) {
+
+			var headers = credentials ? {
+				authorization : "Basic "
+						+ btoa(credentials.username + ":"
+								+ credentials.password)
+			} : {};
+
+			$http.get('user', {
+				headers : headers
+			}).then(function(response) {
+				if (response.data.name) {
+					$rootScope.authenticated = true;
+				} else {
+					$rootScope.authenticated = false;
+				}
+				callback && callback();
+			}, function() {
+				$rootScope.authenticated = false;
+				callback && callback();
+			});
+
+		}
+
+		authenticate();
+		
+		self.credentials = {};
+		
+		self.login = function() {
+			authenticate(self.credentials, function() {
+				if ($rootScope.authenticated) {
+					$location.path("/book");
+					self.error = false;
+				} else {
+					$location.path("/login");
+					self.error = true;
+				}
+			});
+		};
+		
+		self.logout = function() {
+			  $http.post('logout', {}).finally(function() {
+			    $rootScope.authenticated = false;
+			    $location.path("/");
+			  });
+			}
 	}
 })();

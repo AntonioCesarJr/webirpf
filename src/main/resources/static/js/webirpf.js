@@ -10,7 +10,8 @@ angular.module(
 				templateUrl : "/partial/home.html"
 			}).when('/login', {
 				templateUrl : "/partial/login.html",
-				controller: 'LoginController'
+				controller: 'LoginController',
+				controllerAs: 'loginCtrl'
 			}).when('/book', {
 				templateUrl : "/partial/book.html",
 				controller: 'BookController'
