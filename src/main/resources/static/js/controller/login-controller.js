@@ -12,29 +12,31 @@
 		};
 
 		var authenticate = function(credentials, callback) {
+			if($rootScope.authenticated){
+				$location.path("/");
+			}else{
+				var headers = credentials ? {
+					authorization : "Basic "
+							+ btoa(credentials.username + ":"
+									+ credentials.password)
+				} : {};
 
-			var headers = credentials ? {
-				authorization : "Basic "
-						+ btoa(credentials.username + ":"
-								+ credentials.password)
-			} : {};
-
-			$http.get('user', {
-				headers : headers
-			}).then(function(response) {
-				if (response.data.name) {
-					$rootScope.authenticated = true;
-					$rootScope.userrrName = response.data.name; 
-				} else {
+				$http.get('user', {
+					headers : headers
+				}).then(function(response) {
+					if (response.data.name) {
+						$rootScope.authenticated = true;
+						$rootScope.userrrName = response.data.name; 
+					} else {
+						$rootScope.authenticated = false;
+						$rootScope.userrrName = "";
+					}
+					callback && callback();
+				}, function() {
 					$rootScope.authenticated = false;
-					$rootScope.userrrName = "";
-				}
-				callback && callback();
-			}, function() {
-				$rootScope.authenticated = false;
-				callback && callback();
-			});
-
+					callback && callback();
+				});
+			}
 		}
 
 		authenticate();

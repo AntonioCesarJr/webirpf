@@ -45,13 +45,13 @@
 					md-direction="bottom" md-visible="tooltipVisible">Home</md-tooltip>
 				<md-icon>home</md-icon></md-button>
 				<md-button aria-label="Book" class="md-raised"
-					ng-click="loginCtrl.goto('/book')" ng-show="authenticated"> <md-tooltip
-					md-direction="bottom" md-visible="tooltipVisible">Book</md-tooltip>
+					ng-click="loginCtrl.goto('/book')" ng-show="authenticated">
+				<md-tooltip md-direction="bottom" md-visible="tooltipVisible">Book</md-tooltip>
 				<md-icon>location_city</md-icon> </md-button>
-								<md-button aria-label="Login" class="md-raised md-warn"
+				<md-button aria-label="Login" class="md-raised md-primary md-hue-3"
 					ng-click="loginCtrl.goto('/login-form')" ng-show="!authenticated">
 				<md-tooltip md-direction="bottom" md-visible="tooltipVisible">Login</md-tooltip>
-				<md-icon>power_settings_new</md-icon> </md-button>
+				<md-icon>account_circle</md-icon> </md-button>
 				<md-button aria-label="Logout" class="md-raised md-accent"
 					ng-click="loginCtrl.logout()" ng-show="authenticated">
 				<md-tooltip md-direction="bottom" md-visible="tooltipVisible">Logout</md-tooltip>

@@ -1,37 +1,37 @@
-angular.module(
-		'webirpf',
-		[ 'ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngAria',
-				'ngMessages', 'ngMaterial' ]).config(
-		function($routeProvider, $locationProvider, $httpProvider) {
+angular
+		.module(
+				'webirpf',
+				[ 'ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngAria',
+						'ngMessages', 'ngMaterial' ])
+		.config(
+				function($routeProvider, $locationProvider, $httpProvider) {
 
-			$locationProvider.html5Mode(true);
+					$locationProvider.html5Mode(true);
 
-			$routeProvider.when('/', {
-				templateUrl : "/partial/home.html"
-			}).when('/login-form', {
-				templateUrl : "/partial/login-form.html",
-				controller: 'LoginController',
-				controllerAs: 'loginCtrl'
-			}).when('/book', {
-				templateUrl : "/partial/book.html",
-				controller: 'BookController'
-			}).otherwise('/');
-			
-			$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-			
-			
-		}).config(
-		function($mdThemingProvider) {
+					$routeProvider.when('/', {
+						templateUrl : "/partial/home.html"
+					}).when('/login-form', {
+						templateUrl : "/partial/login-form.html",
+						controller : 'LoginController',
+						controllerAs : 'loginCtrl'
+					}).when('/book', {
+						templateUrl : "/partial/book.html",
+						controller : 'BookController'
+					}).otherwise('/');
 
-			var neonRedMap = $mdThemingProvider.extendPalette('red', {
-				'500' : '#ff0000',
-				'contrastDefaultColor' : 'dark'
-			});
-			$mdThemingProvider.definePalette('neonRed', neonRedMap);
+					$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
-			$mdThemingProvider.theme('default').primaryPalette('indigo')
-			.accentPalette('orange').warnPalette('neonRed');
-			
-		}).run(function($log) {
-	$log.debug("Congratulations !! WebSite is running!");
-});
+				}).config(
+				function($mdThemingProvider) {
+
+					var neonRedMap = $mdThemingProvider.extendPalette('red', {
+						'500' : '#ff0000',
+						'contrastDefaultColor' : 'dark'
+					});
+					$mdThemingProvider.definePalette('neonRed', neonRedMap);
+
+					$mdThemingProvider.theme('default');
+
+				}).run(function($log) {
+			$log.debug("Congratulations !! WebSite is running!");
+		});

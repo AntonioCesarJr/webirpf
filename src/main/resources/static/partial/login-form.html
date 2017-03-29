@@ -4,12 +4,20 @@
 		<div>
 			<md-input-container> <label for="username">Username:</label>
 			<input type="text" id="username" name="username" required
-				ng-model="loginCtrl.credentials.username" /></md-input-container>
+				ng-model="loginCtrl.credentials.username" />
+			<div ng-messages="loginForm.username.$error">
+				<div ng-message="required">This field is required.</div>
+			</div>	
+			</md-input-container>
 		</div>
 		<div>
 			<md-input-container> <label for="password">Password:</label>
 			<input type="password" id="password" name="password" required
-				ng-model="loginCtrl.credentials.password" /></md-input-container>
+				ng-model="loginCtrl.credentials.password" />
+			<div ng-messages="loginForm.password.$error">
+				<div ng-message="required">This field is required.</div>
+			</div>
+			</md-input-container>
 		</div>
 		<div>
 			<md-button class="md-fab md-primary" type="submit" aria-label="Login"
@@ -18,6 +26,6 @@
 			<md-icon>clear</md-icon> </md-button> -->
 		</div>
 	</form>
-	<div ng-show="loginCtrl.error">There was a problem logging in.
+	<div ng-show="loginCtrl.error">Invalid username/password. 
 		Please try again.</div>
 </div>
