@@ -30,7 +30,7 @@ angular
 					});
 					$mdThemingProvider.definePalette('neonRed', neonRedMap);
 
-					$mdThemingProvider.theme('default');
+					$mdThemingProvider.theme('default').warnPalette('orange').dark();
 
 				}).run(function($log) {
 			$log.debug("Congratulations !! WebSite is running!");
