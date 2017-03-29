@@ -23,9 +23,9 @@ public class WebIRPFApplication {
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.httpBasic().and().authorizeRequests().antMatchers("/").permitAll().antMatchers("/partial/login.html")
-					.permitAll().antMatchers("/login/**").permitAll().antMatchers("/partial/home.html").permitAll()
-					.anyRequest().authenticated();
+			http.httpBasic().and().authorizeRequests().antMatchers("/").permitAll().antMatchers("/partial/login-form**")
+					.permitAll().antMatchers("/partial/home.html").permitAll().anyRequest().authenticated().and()
+					.formLogin().loginPage("/");
 			http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		}
 	}

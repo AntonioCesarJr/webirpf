@@ -8,8 +8,8 @@ angular.module(
 
 			$routeProvider.when('/', {
 				templateUrl : "/partial/home.html"
-			}).when('/login', {
-				templateUrl : "/partial/login.html",
+			}).when('/login-form', {
+				templateUrl : "/partial/login-form.html",
 				controller: 'LoginController',
 				controllerAs: 'loginCtrl'
 			}).when('/book', {

@@ -2,9 +2,9 @@
 	angular.module('webirpf').controller('BookController', BookController);
 
 	'use strict';
-	BookController.$inject = [ '$scope', '$http', '$log' ];
+	BookController.$inject = [ '$scope', '$http', '$log', '$location' ];
 
-	function BookController($scope, $http, $log) {
+	function BookController($scope, $http, $log, $location) {
 		$scope.books = {};
 		$scope.book = {};
 		$scope.length = null;
@@ -20,6 +20,8 @@
 				$scope.books = response.data;
 				$scope.length = response.data.length;
 				$log.debug(response);
+			}, function(error) {
+				$location.path("login");
 			});
 		}
 

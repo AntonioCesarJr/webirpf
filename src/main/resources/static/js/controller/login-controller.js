@@ -47,7 +47,7 @@
 					$location.path("/book");
 					self.error = false;
 				} else {
-					$location.path("/login");
+					$location.path("/login-form");
 					self.error = true;
 				}
 			});
