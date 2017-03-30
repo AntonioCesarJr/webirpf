@@ -50,7 +50,7 @@
 					ng-click="loginCtrl.goto('/login-form')" ng-show="!authenticated">
 				<md-icon>account_circle</md-icon> Login </md-button>
 				<md-button aria-label="Logout" class="md-raised md-accent"
-					ng-click="loginCtrl.logout()" ng-show="authenticated">
+					ng-click="loginCtrl.logout()" ng-show="authenticated" title="{{userrrName}}">
 				<md-icon>power_settings_new</md-icon> Logout</md-button>
 			</div>
 			<span flex=""></span>

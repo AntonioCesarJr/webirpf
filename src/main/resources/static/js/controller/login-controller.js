@@ -57,8 +57,10 @@
 		self.logout = function() {
 			  $http.post('logout', {}).finally(function() {
 			    $rootScope.authenticated = false;
+			    $rootScope.userrrName = "";
 			    $location.path("/");
 			  });
 			}
+		authenticate();
 	}
 })();
