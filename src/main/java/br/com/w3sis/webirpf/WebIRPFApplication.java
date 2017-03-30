@@ -36,8 +36,8 @@ public class WebIRPFApplication {
 			http.httpBasic().and().authorizeRequests().antMatchers("/").permitAll().antMatchers("/partial/login-form**")
 					.permitAll().antMatchers("/partial/home.html").permitAll().anyRequest().authenticated().and()
 					.formLogin().loginPage("/").and().logout()
-					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-			http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and().csrf()
+					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		}
 
 		@Override
