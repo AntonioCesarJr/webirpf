@@ -1,2 +1,2 @@
 # WebIRPF
-Spring Boot Rest Controllers JPA With Hibernate and Front-End with Angular
+Spring Boot with Rest Controllers, Security, JPA With Hibernate, Thymeleaf (just form index) and Front-End with Angular
