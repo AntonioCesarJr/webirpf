@@ -21,7 +21,7 @@
 									+ credentials.password)
 				} : {};
 
-				$http.get('user', {
+				$http.get('/user', {
 					headers : headers
 				}).then(function(response) {
 					if (response.data.name) {
@@ -32,15 +32,14 @@
 						$rootScope.userrrName = "";
 					}
 					callback && callback();
-				}, function() {
+				}, function(error) {
+					$log.debug(error);
 					$rootScope.authenticated = false;
 					callback && callback();
 				});
 			}
 		}
 
-		authenticate();
-		
 		self.credentials = {};
 		
 		self.login = function() {
@@ -58,7 +57,6 @@
 		self.logout = function() {
 			  $http.post('logout', {}).finally(function() {
 			    $rootScope.authenticated = false;
-			    $rootScope.userrrName = "";
 			    $location.path("/");
 			  });
 			}
