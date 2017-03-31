@@ -15,7 +15,3 @@ spring:
         username: seeker
         password: seeker
         driverClassName: com.mysql.jdbc.Driver
-        
-security: 
-    user: 
-        password: teste
