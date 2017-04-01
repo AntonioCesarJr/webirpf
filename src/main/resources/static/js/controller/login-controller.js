@@ -29,26 +29,25 @@
 							+ btoa(credentials.username + ":"
 									+ credentials.password)
 				} : {};
-				$log.debug(credentials);
-				if(typeof credentials != 'undefined'){
-					$http.get('/user', {
-						headers : headers
-					}).then(function(response) {
-						if (response.data.name) {
-							$rootScope.authenticated = true;
-							$rootScope.userrrName = response.data.name; 
-						} else {
-							$rootScope.authenticated = false;
-							$rootScope.userrrName = "";
-						}
-						callback && callback();
-					}, function(error) {
-						$log.debug(error);
+				$http.get('/user', {
+					headers : headers
+				}).then(function(response) {
+					if (response.data.name) {
+						$rootScope.authenticated = true;
+						$rootScope.userrrName = response.data.name; 
+					} else {
 						$rootScope.authenticated = false;
+						$rootScope.userrrName = "";
+					}
+					callback && callback();
+				}, function(error) {
+					$log.debug(error);
+					if(typeof credentials != 'undefined'){
 						showSimpleToast('Invalid User / Password!')
-						callback && callback();
-					});
-				}
+					}
+					$rootScope.authenticated = false;
+					callback && callback();
+				});
 			}
 		}
 
