@@ -25,7 +25,7 @@ public class WebIRPFApplication {
 	}
 
 	@Configuration
-	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+//	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		@Autowired
