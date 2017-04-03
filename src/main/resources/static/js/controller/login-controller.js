@@ -5,7 +5,8 @@
 	LoginController.$inject = [ '$rootScope', '$http', '$location', '$log', '$mdToast' ];
 
 	function LoginController($rootScope, $http, $location, $log, $mdToast) {
-		var self = this
+		var self = this;
+		self.credentials = {};
 		
 		self.goto = function(page){
 			$location.url(page);
@@ -50,8 +51,6 @@
 				});
 			}
 		}
-
-		self.credentials = {};
 		
 		self.login = function() {
 			authenticate(self.credentials, function() {
@@ -72,6 +71,7 @@
 			    $location.path("/");
 			  });
 			}
+		
 		authenticate();
 	}
 })();

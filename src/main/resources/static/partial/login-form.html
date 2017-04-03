@@ -1,3 +1,28 @@
-Unstaged changes after reset:
-D	src/main/resources/static/partial/login-form.html
-M	src/main/resources/static/partial/login.html
+<div align="center" ng-cloak="">
+	<md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35"
+		flex-gt-md="25" layout layout-align="center center">
+	<form name="loginForm" ng-submit="loginCtrl.login()"
+		novalidate="novalidate">
+		<md-input-container class="md-block"> <label>
+			Login </label> <md-icon>account_circle</md-icon>
+		<input ng-model="loginCtrl.credentials.username" name="username"
+			required="required">
+		<div ng-messages="loginForm.username.$error" role="alert" multiple>
+			<div ng-message="required">Required information !</div>
+		</div>
+		</md-input-container>
+		<md-input-container class="md-block"> <label>Password:
+		</label><md-icon>https</md-icon> <input type="password" ng-model="loginCtrl.credentials.password"
+			name="password" required="required">
+		<div ng-messages="loginForm.password.$error" role="alert" multiple>
+			<div ng-message="required">Required Information.</div>
+		</div>
+		</md-input-container>
+		<div>
+			<md-button class="md-raised md-primary" type="submit"
+				aria-label="Submit" title="Submit"> <md-icon>save</md-icon>
+			</md-button>
+		</div>
+	</form>
+	</md-whiteframe>
+</div>
