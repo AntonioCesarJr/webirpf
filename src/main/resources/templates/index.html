@@ -15,6 +15,7 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet"
 	href="js/angular-material/angular-material.min.css" />
+<link rel="stylesheet" href="css//webirpf.css" />
 <script src="js/angular-1.6.2/angular.min.js"></script>
 <script src="js/angular-1.6.2/angular-route.min.js"></script>
 <script src="js/angular-1.6.2/angular-resource.min.js"></script>
@@ -50,10 +51,11 @@
 					ng-click="loginCtrl.goto('/login-form')" ng-show="!authenticated">
 				<md-icon>account_circle</md-icon> Login </md-button>
 				<md-button aria-label="Logout" class="md-raised md-accent"
-					ng-click="loginCtrl.logout()" ng-show="authenticated" title="{{userrrName}}">
-				<md-icon>power_settings_new</md-icon> Logout</md-button>
+					ng-click="loginCtrl.logout()" ng-show="authenticated"
+					title="{{userrrName}}"> <md-icon>power_settings_new</md-icon>
+				Logout</md-button>
 			</div>
-			<span flex=""></span>
+			<span flex=""> </span>
 		</div>
 		</md-toolbar>
 		<ng-view></ng-view>
