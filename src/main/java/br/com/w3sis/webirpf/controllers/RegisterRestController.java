@@ -19,7 +19,15 @@ public class RegisterRestController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<Register> save(@RequestBody Register register) {
-		registerRepository.save(register);
+		try {
+			registerRepository.save(register);
+		} catch (Exception e) {
+			if (e instanceof org.springframework.dao.DataIntegrityViolationException) {
+				return new ResponseEntity<>(register, HttpStatus.INTERNAL_SERVER_ERROR);
+			} else if (e instanceof javax.validation.ConstraintViolationException) {
+				return new ResponseEntity<>(register, HttpStatus.NOT_ACCEPTABLE);
+			}
+		}
 		return new ResponseEntity<>(register, HttpStatus.OK);
 	}
 

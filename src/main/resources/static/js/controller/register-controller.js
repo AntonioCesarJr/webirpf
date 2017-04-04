@@ -20,14 +20,11 @@
 					$log.debug(response);
 				}, function errorcallback(response) {
 					if (isCompleted(register)) {
-						if(response.status="500"){
-							if(response.data.message.indexOf('Validation failed for class') != -1){
-								$scope.registerForm.cpf.$setValidity("validCPF",false);
-							}
-							if(response.data.message.indexOf('could not execute statement') != -1){
-								$scope.registerForm.cpf.$setValidity("uniqueCPF",false);
-							}
-						}
+						if (response.status == "500"){
+							showSimpleToast('CPF already registered!');
+						}else if(response.status == "406"){
+							showSimpleToast('Invalid CPF!');
+						};
 					}
 					$log.debug(response);
 				});
