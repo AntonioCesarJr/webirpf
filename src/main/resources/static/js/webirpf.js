@@ -9,7 +9,9 @@ angular
 					$locationProvider.html5Mode(true);
 
 					$routeProvider.when('/', {
-						templateUrl : "/partial/home.html"
+						templateUrl : "/partial/home.html",
+						controller : 'HomeController',
+						controllerAs : 'hmCtrl'
 					}).when('/login-form', {
 						templateUrl : "/partial/login-form.html",
 						controller : 'LoginController',
@@ -17,21 +19,24 @@ angular
 					}).when('/book', {
 						templateUrl : "/partial/book.html",
 						controller : 'BookController'
+					}).when('/register', {
+						templateUrl : "/partial/register.html",
+						controller : 'RegisterController',
+						controllerAs : 'regCtrl'
 					}).otherwise('/');
 
 					$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
-				}).config(
-				function($mdThemingProvider) {
+				}).config(function($mdThemingProvider) {
 
-					var neonRedMap = $mdThemingProvider.extendPalette('red', {
-						'500' : '#ff0000',
-						'contrastDefaultColor' : 'dark'
-					});
-					$mdThemingProvider.definePalette('neonRed', neonRedMap);
+			var neonRedMap = $mdThemingProvider.extendPalette('red', {
+				'500' : '#ff0000',
+				'contrastDefaultColor' : 'dark'
+			});
+			$mdThemingProvider.definePalette('neonRed', neonRedMap);
 
-					$mdThemingProvider.theme('default').warnPalette('orange').dark();
+			$mdThemingProvider.theme('default').warnPalette('orange').dark();
 
-				}).run(function($log) {
+		}).run(function($log) {
 			$log.debug("Congratulations !! WebSite is running!");
 		});

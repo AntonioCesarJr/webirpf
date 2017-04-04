@@ -34,10 +34,10 @@ public class WebIRPFApplication {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http.httpBasic().and().authorizeRequests().antMatchers("/").permitAll().antMatchers("/partial/login-form**")
-					.permitAll().antMatchers("/partial/home.html").permitAll().antMatchers("/resources/**").permitAll()
-					.anyRequest().authenticated().and().formLogin().loginPage("/").and().logout()
-					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and().csrf()
-					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+					.permitAll().antMatchers("/partial/home.html").permitAll().antMatchers("/partial/register.html")
+					.permitAll().antMatchers("/resources/**").permitAll().anyRequest().authenticated().and().formLogin()
+					.loginPage("/").and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and()
+					.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		}
 
 		@Override
