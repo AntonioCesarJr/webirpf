@@ -1,5 +1,6 @@
 package br.com.w3sis.webirpf.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ public class Register {
 	@Column(nullable = false, unique = true)
 	private String cpf;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "register", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Address address;
 
 	public Long getId() {

@@ -1,21 +1,24 @@
 <div align="center" ng-cloak="">
 	<md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35"
 		flex-gt-md="25" layout layout-align="center center">
-	<form name="registerForm" ng-submit="regCtrl.register()"
+	<form name="registerForm" ng-submit="add(register)"
 		novalidate="novalidate" method="post">
+		<input type="hidden" ng-model="register.id" name="id">
 		<md-input-container class="md-block"> <label>
-			Name </label> <md-icon>account_circle</md-icon>
-		<input ng-model="regCtrl.name" name="name"
-			required="required">
+			Name </label> <md-icon>account_circle</md-icon> <input
+			ng-model="register.name" name="name" required="required">
 		<div ng-messages="registerForm.name.$error" role="alert" multiple>
-			<div ng-message="required">Required information !</div>
+			<div ng-message="required">Required information!</div>
 		</div>
 		</md-input-container>
 		<md-input-container class="md-block"> <label>CPF:
-		</label><md-icon>vpn_key</md-icon> <input ng-model="regCtrl.cpf"
-			name="cpf" required="required">
+		</label>
+		<md-icon>vpn_key</md-icon> <input ng-model="register.cpf" name="cpf"
+			required="required">
 		<div ng-messages="registerForm.cpf.$error" role="alert" multiple>
-			<div ng-message="required">Required Information.</div>
+			<div ng-message="required">Required Information!</div>
+			<div ng-message="validCPF">Invalid CPF!</div>
+			<div ng-message="uniqueCPF">CPF is not unique!</div>
 		</div>
 		</md-input-container>
 		<div>

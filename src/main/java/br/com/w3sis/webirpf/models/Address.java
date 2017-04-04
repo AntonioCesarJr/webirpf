@@ -43,7 +43,7 @@ public class Address {
 	@Column(nullable = false)
 	private String state;
 
-	@OneToOne(mappedBy = "address")
+	@OneToOne()
 	private Register register;
 
 	public Long getId() {

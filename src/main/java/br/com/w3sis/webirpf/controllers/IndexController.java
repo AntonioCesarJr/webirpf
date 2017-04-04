@@ -17,6 +17,11 @@ public class IndexController {
 		return "index";
 	}
 
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register() {
+		return "index";
+	}
+
 	@RequestMapping(value = "/book", method = RequestMethod.GET)
 	public String book() {
 		return "index";
