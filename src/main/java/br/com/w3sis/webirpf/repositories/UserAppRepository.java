@@ -1,4 +1,4 @@
-package br.com.w3sis.webirpf.repository;
+package br.com.w3sis.webirpf.repositories;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 

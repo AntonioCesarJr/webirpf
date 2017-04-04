@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.w3sis.webirpf.models.Book;
-import br.com.w3sis.webirpf.repository.BookRepository;
+import br.com.w3sis.webirpf.repositories.BookRepository;
 
 @RestController
 public class BookRestController {

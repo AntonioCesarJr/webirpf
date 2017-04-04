@@ -22,7 +22,7 @@
 					if (isCompleted(register)) {
 						if (response.status == "500"){
 							showSimpleToast('CPF already registered!');
-						}else if(response.status == "406"){
+						}else if(response.status == "409"){
 							showSimpleToast('Invalid CPF!');
 						};
 					}

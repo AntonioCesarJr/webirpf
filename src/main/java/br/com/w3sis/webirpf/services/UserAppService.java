@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import br.com.w3sis.webirpf.models.UserApp;
-import br.com.w3sis.webirpf.repository.UserAppRepository;
+import br.com.w3sis.webirpf.repositories.UserAppRepository;
 
 @Repository
 public class UserAppService implements UserDetailsService {
