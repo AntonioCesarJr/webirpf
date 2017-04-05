@@ -43,7 +43,7 @@
 					callback && callback();
 				}, function(error) {
 					$log.debug(error);
-					if(typeof credentials != 'undefined'){
+					if(credentials !== null && credentials !== undefined){
 						showSimpleToast('Invalid User / Password!')
 					}
 					$rootScope.authenticated = false;

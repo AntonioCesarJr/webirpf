@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -28,12 +29,12 @@ public class RegisterRestController {
 		binder.addValidators(new RegisterValidator());
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<Register> save(@RequestBody @Valid Register register, BindingResult result) {
+	@RequestMapping(value = "/validateregister", method = RequestMethod.POST)
+	public ResponseEntity<Register> validate(@RequestBody @Valid Register register, BindingResult result)
+			throws BindException {
 		if (result.hasErrors()) {
-			return new ResponseEntity<>(register, HttpStatus.CONFLICT);
+			throw new BindException(result);
 		}
-		registerRepository.save(register);
 		return new ResponseEntity<>(register, HttpStatus.OK);
 	}
 

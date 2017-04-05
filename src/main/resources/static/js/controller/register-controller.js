@@ -8,37 +8,44 @@
 	function RegisterController($scope, $http, $log, $mdToast) {
 
 		$scope.register = {};
-		$scope.add = Add;
+		$scope.validate = Validate;
 
-		function Add(register) {
+		function Validate(register) {
 			if (isCompleted(register)) {
 				$http({
 					method : 'POST',
 					data : this.register,
-					url : 'register'
-				}).then(
-						function successCallback(response) {
-							$log.debug(response);
-						},
-						function errorcallback(response) {
-							if (isCompleted(register)) {
-								if (response.status == "409") {
-									showSimpleToast('Invalid CPF!');
-								} else if (response.status == "500") {
-									showSimpleToast('CPF already registered!');
-									$scope.registerForm.cpf.$setValidity(
-											"validcpf", true);
-								}
-								$scope.registerForm.cpf.$setValidity(
-										"cpferror", false);
-							}
-							$log.debug(response);
-						});
+					url : 'validateregister'
+				})
+						.then(
+								function successCallback(response) {
+									$log.debug(response);
+									$scope.registerForm.cpf.$setValidity("cpf", true);
+								},
+								function errorcallback(response) {
+									if (isCompleted(register)) {
+										if (response.status == "400") {
+											for (error in response.data.errors) {
+												$log
+														.debug(error.defaultMessage);
+												showSimpleToast(response.data.errors[error].defaultMessage);
+												$scope.registerForm.cpf
+														.$setValidity(
+																response.data.errors[error].field,
+																false);
+											}
+										} else if (response.status == "500") {
+											showSimpleToast('CPF already registered !');
+										}
+									}
+									$log.debug(response);
+								});
 			}
 		}
 
 		function isCompleted(register) {
-			return (!register.name == '' && !register.cpf == '') ? true : false;
+			return (!register.name == '' && !register.cpf == '' && !register.email == '') ? true
+					: false;
 		}
 
 		function showSimpleToast(text) {

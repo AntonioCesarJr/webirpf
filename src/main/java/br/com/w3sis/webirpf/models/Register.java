@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -26,6 +27,11 @@ public class Register {
 	@NotEmpty
 	@Column(nullable = false, unique = true)
 	private String cpf;
+	
+	@Email(message="Invalid E-Mail!")
+	@NotEmpty
+	@Column(nullable = false, unique = true)
+	private String email;
 
 	@OneToOne(mappedBy = "register", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Address address;
@@ -52,6 +58,14 @@ public class Register {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Address getAddress() {
