@@ -8,7 +8,20 @@
 	function RegisterController($scope, $http, $log, $mdToast) {
 
 		$scope.register = {};
+		$scope.registerValidated = false;
 		$scope.validate = Validate;
+		$scope.selectedIndex = 0;
+
+		$scope.$watch('selectedIndex', function(current, old) {
+			if (current == 0) {
+				$scope.registerValidated = false;
+			} else {
+				if ($scope.registerValidated == false) {
+					showSimpleToast('Please complete data then click next!');
+					$scope.selectedIndex = 0;
+				}
+			}
+		});
 
 		function Validate(register) {
 			if (isCompleted(register)) {
@@ -20,14 +33,17 @@
 						.then(
 								function successCallback(response) {
 									$log.debug(response);
-									$scope.registerForm.cpf.$setValidity("cpf", true);
+									$scope.registerValidated = true;
+									$scope.registerForm.cpf.$setValidity("cpf",
+											true);
+									$scope.selectedIndex = 1;
 								},
 								function errorcallback(response) {
+									$log.debug(response);
+									$scope.registerValidated = false;
 									if (isCompleted(register)) {
 										if (response.status == "400") {
 											for (error in response.data.errors) {
-												$log
-														.debug(error.defaultMessage);
 												showSimpleToast(response.data.errors[error].defaultMessage);
 												$scope.registerForm.cpf
 														.$setValidity(
@@ -38,7 +54,6 @@
 											showSimpleToast('CPF already registered !');
 										}
 									}
-									$log.debug(response);
 								});
 			}
 		}

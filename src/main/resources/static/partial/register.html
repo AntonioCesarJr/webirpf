@@ -1,5 +1,6 @@
 <div align="center" ng-cloak="">
-	<md-content> <md-tabs md-dynamic-height md-border-bottom>
+	<md-content> <md-tabs md-center-tabs="true"
+		md-dynamic-height md-border-bottom md-selected="selectedIndex">
 	<md-tab label="Register"> <md-content class="md-padding">
 	<h1 class="md-display-2">Register</h1>
 	<md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35"
@@ -25,7 +26,7 @@
 		</div>
 		</md-input-container>
 		<md-input-container class="md-block"> <label>
-			E-Mail </label> <md-icon>account_circle</md-icon> <input
+			E-Mail </label> <md-icon>mail_outline</md-icon> <input
 			ng-model="register.email" name="email" required="required"
 			type="email">
 		<div ng-messages="registerForm.email.$error" role="alert" multiple>
@@ -35,11 +36,11 @@
 		</md-input-container>
 		<div>
 			<md-button class="md-raised md-primary" type="submit"
-				aria-label="Submit" title="Submit"> <md-icon>save</md-icon>
+				aria-label="Submit" title="Next"> <md-icon>navigate_next</md-icon>
 			</md-button>
 		</div>
 	</form>
-	</md-whiteframe> </md-content> </md-tab> <md-tab label="Address"> <md-content class="md-padding">
+	</md-whiteframe> </md-content> </md-tab> <md-tab label="Address" ng-click="null"> <md-content class="md-padding">
 	<h1 class="md-display-2">Address</h1>
 	<md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35"
 		flex-gt-md="25" layout layout-align="center center">
@@ -47,9 +48,51 @@
 		novalidate="novalidate" method="post">
 		<input type="hidden" ng-model="address.id" name="id">
 		<md-input-container class="md-block"> <label>
-			Name </label> <md-icon>account_circle</md-icon> <input
-			ng-model="address.cep" name="cep" required="required">
+			CEP </label> <md-icon>pin_drop</md-icon> <input ng-model="address.cep"
+			name="cep" required="required">
 		<div ng-messages="addressForm.cep.$error" role="alert" multiple>
+			<div ng-message="required">Required information!</div>
+		</div>
+		</md-input-container>
+		<md-input-container class="md-block"> <label>
+			Street </label> <md-icon>traffic</md-icon> <input ng-model="address.street"
+			name="street" required="required">
+		<div ng-messages="addressForm.street.$error" role="alert" multiple>
+			<div ng-message="required">Required information!</div>
+		</div>
+		</md-input-container>
+		<md-input-container class="md-block"> <label>
+			Number </label> <md-icon>local_convenience_store</md-icon> <input ng-model="address.number"
+			name="number" required="required">
+		<div ng-messages="addressForm.number.$error" role="alert" multiple>
+			<div ng-message="required">Required information!</div>
+		</div>
+		</md-input-container>
+		<md-input-container class="md-block"> <label>
+			Complement </label> <md-icon>beenhere</md-icon> <input ng-model="address.complement"
+			name="complement" required="required">
+		<div ng-messages="addressForm.complement.$error" role="alert" multiple>
+			<div ng-message="required">Required information!</div>
+		</div>
+		</md-input-container>
+		<md-input-container class="md-block"> <label>
+			Neighborhood </label> <md-icon>public</md-icon> <input ng-model="address.neighborhood"
+			name="neighborhood" required="required">
+		<div ng-messages="addressForm.neighborhood.$error" role="alert" multiple>
+			<div ng-message="required">Required information!</div>
+		</div>
+		</md-input-container>
+		<md-input-container class="md-block"> <label>
+			City </label> <md-icon>public</md-icon> <input ng-model="address.city"
+			name="city" required="required">
+		<div ng-messages="addressForm.city.$error" role="alert" multiple>
+			<div ng-message="required">Required information!</div>
+		</div>
+		</md-input-container>
+		<md-input-container class="md-block"> <label>
+			State </label> <md-icon>public</md-icon> <input ng-model="address.state"
+			name="state" required="required">
+		<div ng-messages="addressForm.state.$error" role="alert" multiple>
 			<div ng-message="required">Required information!</div>
 		</div>
 		</md-input-container>
@@ -60,12 +103,4 @@
 		</div>
 	</form>
 	</md-whiteframe> </md-content> </md-tab> </md-tabs> </md-content>
-
-
-
-
-
-
-
-
 </div>
