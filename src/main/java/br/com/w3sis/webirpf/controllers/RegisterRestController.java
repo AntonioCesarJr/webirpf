@@ -33,11 +33,7 @@ public class RegisterRestController {
 		if (result.hasErrors()) {
 			return new ResponseEntity<>(register, HttpStatus.CONFLICT);
 		}
-		try {
-			registerRepository.save(register);
-		} catch (Exception e) {
-			return new ResponseEntity<>(register, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		registerRepository.save(register);
 		return new ResponseEntity<>(register, HttpStatus.OK);
 	}
 

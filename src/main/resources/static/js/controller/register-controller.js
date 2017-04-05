@@ -16,18 +16,24 @@
 					method : 'POST',
 					data : this.register,
 					url : 'register'
-				}).then(function successCallback(response) {
-					$log.debug(response);
-				}, function errorcallback(response) {
-					if (isCompleted(register)) {
-						if (response.status == "500"){
-							showSimpleToast('CPF already registered!');
-						}else if(response.status == "409"){
-							showSimpleToast('Invalid CPF!');
-						};
-					}
-					$log.debug(response);
-				});
+				}).then(
+						function successCallback(response) {
+							$log.debug(response);
+						},
+						function errorcallback(response) {
+							if (isCompleted(register)) {
+								if (response.status == "409") {
+									showSimpleToast('Invalid CPF!');
+								} else if (response.status == "500") {
+									showSimpleToast('CPF already registered!');
+									$scope.registerForm.cpf.$setValidity(
+											"validcpf", true);
+								}
+								$scope.registerForm.cpf.$setValidity(
+										"cpferror", false);
+							}
+							$log.debug(response);
+						});
 			}
 		}
 

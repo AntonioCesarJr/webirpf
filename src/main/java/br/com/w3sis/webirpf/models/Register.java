@@ -22,7 +22,7 @@ public class Register {
 	@Column(nullable = false, unique = false)
 	private String name;
 
-	@CPF
+	@CPF(message = "Invalid CPF!")
 	@NotEmpty
 	@Column(nullable = false, unique = true)
 	private String cpf;
