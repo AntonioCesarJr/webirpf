@@ -11,13 +11,15 @@
 			<div ng-message="required">Required information!</div>
 		</div>
 		</md-input-container>
+		<md-divider></md-divider>
 		<md-input-container class="md-block"> <label>CPF:
-		</label>
-		<md-icon>vpn_key</md-icon> <input ng-model="register.cpf" name="cpf"
-			required="required">
+		</label> <md-icon>vpn_key</md-icon> <input ng-model="register.cpf" name="cpf"
+			required="required" mask="999.999.999-99"
+			ng-pattern="/^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2})$/">
 		<div ng-messages="registerForm.cpf.$error" role="alert" multiple>
 			<div ng-message="required">Required Information!</div>
 			<div ng-message="cpferror">CPF Problem!</div>
+			<div ng-message="pattern">Invalid CPF!</div>
 		</div>
 		</md-input-container>
 		<div>
