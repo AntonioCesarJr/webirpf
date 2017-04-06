@@ -7,10 +7,17 @@
 
 	function RegisterController($scope, $http, $log, $mdToast) {
 
-		$scope.register = {};
+		$scope.register = {
+			name : "Antonio",
+			cpf : "164.555.398-18",
+			email : "jrcesar4@gmail.com"
+		};
+
 		$scope.registerValidated = false;
 		$scope.validate = Validate;
 		$scope.selectedIndex = 0;
+		$scope.searchCEP = SearchCEP;
+		$scope.cleanAttributes = CleanAttributes; 
 
 		$scope.$watch('selectedIndex', function(current, old) {
 			if (current == 0) {
@@ -58,6 +65,19 @@
 			}
 		}
 
+		function SearchCEP(cep) {
+			var uri = 'https://viacep.com.br/ws/' + cep + '/json/';
+			$log.debug(uri);
+			$http({
+				method : 'GET',
+				url : 'https://viacep.com.br/ws/' + cep + '/json/'
+			}).then(function success(response) {
+				CompleteAttributes(response.data);
+			}, function error(response) {
+				showSimpleToast('Web Service fail ! -> ' + response.data)
+			});
+		}
+
 		function isCompleted(register) {
 			return (!register.name == '' && !register.cpf == '' && !register.email == '') ? true
 					: false;
@@ -67,7 +87,23 @@
 			$mdToast.show($mdToast.simple().textContent(text).position(
 					'top right').hideDelay(3000));
 		}
-		;
+		
+		function CompleteAttributes(data){
+			$scope.address.street = data.logradouro;
+			$scope.address.complement = data.comlemento;
+			$scope.address.neighborhood = data.bairro;
+			$scope.address.city = data.localidade;
+			$scope.address.state = data.uf;
+		}
+		
+		function CleanAttributes(){
+			$log.debug('Called')
+			$scope.address.street = '';
+			$scope.address.complement = '';
+			$scope.address.neighborhood = '';
+			$scope.address.city = '';
+			$scope.address.state = '';
+		}
 
 		$log.debug('Register Controller Is Loaded !');
 	}

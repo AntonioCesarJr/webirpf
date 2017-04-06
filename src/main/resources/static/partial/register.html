@@ -40,7 +40,8 @@
 			</md-button>
 		</div>
 	</form>
-	</md-whiteframe> </md-content> </md-tab> <md-tab label="Address" ng-click="null"> <md-content class="md-padding">
+	</md-whiteframe> </md-content> </md-tab> <md-tab label="Address" ng-click="null"> <md-content
+		class="md-padding">
 	<h1 class="md-display-2">Address</h1>
 	<md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35"
 		flex-gt-md="25" layout layout-align="center center">
@@ -49,49 +50,51 @@
 		<input type="hidden" ng-model="address.id" name="id">
 		<md-input-container class="md-block"> <label>
 			CEP </label> <md-icon>pin_drop</md-icon> <input ng-model="address.cep"
-			name="cep" required="required">
+			name="cep" required="required" ng-change="cleanAttributes()"> 
+			<md-button
+			class="md-fab md-warn" aria-label="Search" title="Search CEP" ng-click="searchCEP(address.cep)">
+		<md-icon>search</md-icon> </md-button>
 		<div ng-messages="addressForm.cep.$error" role="alert" multiple>
 			<div ng-message="required">Required information!</div>
 		</div>
 		</md-input-container>
 		<md-input-container class="md-block"> <label>
 			Street </label> <md-icon>traffic</md-icon> <input ng-model="address.street"
-			name="street" required="required">
+			name="street" required="required" ng-disabled="true">
 		<div ng-messages="addressForm.street.$error" role="alert" multiple>
 			<div ng-message="required">Required information!</div>
 		</div>
 		</md-input-container>
 		<md-input-container class="md-block"> <label>
-			Number </label> <md-icon>local_convenience_store</md-icon> <input ng-model="address.number"
-			name="number" required="required">
+			Number </label> <md-icon>local_convenience_store</md-icon> <input
+			ng-model="address.number" name="number" required="required">
 		<div ng-messages="addressForm.number.$error" role="alert" multiple>
 			<div ng-message="required">Required information!</div>
 		</div>
 		</md-input-container>
 		<md-input-container class="md-block"> <label>
-			Complement </label> <md-icon>beenhere</md-icon> <input ng-model="address.complement"
-			name="complement" required="required">
-		<div ng-messages="addressForm.complement.$error" role="alert" multiple>
+			Complement </label> <md-icon>beenhere</md-icon> <input
+			ng-model="address.complement" name="complement">
+		</md-input-container>
+		<md-input-container class="md-block"> <label>
+			Neighborhood </label> <md-icon>my_location</md-icon> <input
+			ng-model="address.neighborhood" name="neighborhood"
+			required="required" ng-disabled="true">
+		<div ng-messages="addressForm.neighborhood.$error" role="alert"
+			multiple>
 			<div ng-message="required">Required information!</div>
 		</div>
 		</md-input-container>
 		<md-input-container class="md-block"> <label>
-			Neighborhood </label> <md-icon>public</md-icon> <input ng-model="address.neighborhood"
-			name="neighborhood" required="required">
-		<div ng-messages="addressForm.neighborhood.$error" role="alert" multiple>
-			<div ng-message="required">Required information!</div>
-		</div>
-		</md-input-container>
-		<md-input-container class="md-block"> <label>
-			City </label> <md-icon>public</md-icon> <input ng-model="address.city"
-			name="city" required="required">
+			City </label> <md-icon>map</md-icon> <input ng-model="address.city"
+			name="city" required="required" ng-disabled="true">
 		<div ng-messages="addressForm.city.$error" role="alert" multiple>
 			<div ng-message="required">Required information!</div>
 		</div>
 		</md-input-container>
 		<md-input-container class="md-block"> <label>
 			State </label> <md-icon>public</md-icon> <input ng-model="address.state"
-			name="state" required="required">
+			name="state" required="required" ng-disabled="true">
 		<div ng-messages="addressForm.state.$error" role="alert" multiple>
 			<div ng-message="required">Required information!</div>
 		</div>
