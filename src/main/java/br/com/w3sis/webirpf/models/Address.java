@@ -27,8 +27,6 @@ public class Address {
 	@Column(nullable = false)
 	private String number;
 
-	@NotEmpty
-	@Column(nullable = false)
 	private String complement;
 
 	@NotEmpty

@@ -3,9 +3,9 @@
 		md-dynamic-height md-border-bottom md-selected="selectedIndex">
 	<md-tab label="Register"> <md-content class="md-padding">
 	<h1 class="md-display-2">Register</h1>
-	<md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35"
+	<md-whiteframe class="md-whiteframe-5dp" flex-sm="45" flex-gt-sm="35"
 		flex-gt-md="25" layout layout-align="center center">
-	<form name="registerForm" ng-submit="validate(register)"
+	<form name="registerForm" ng-submit="validateRegister(register)"
 		novalidate="novalidate" method="post">
 		<input type="hidden" ng-model="register.id" name="id">
 		<md-input-container class="md-block"> <label>
@@ -43,7 +43,7 @@
 	</md-whiteframe> </md-content> </md-tab> <md-tab label="Address" ng-click="null"> <md-content
 		class="md-padding">
 	<h1 class="md-display-2">Address</h1>
-	<md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35"
+	<md-whiteframe class="md-whiteframe-5dp" flex-sm="45" flex-gt-sm="35"
 		flex-gt-md="25" layout layout-align="center center">
 	<form name="addressForm" ng-submit="validateAddress(address)"
 		novalidate="novalidate" method="post">
@@ -52,7 +52,7 @@
 			CEP </label> <md-icon>pin_drop</md-icon> <input ng-model="address.cep"
 			name="cep" required="required" ng-change="cleanAttributes()"> 
 			<md-button
-			class="md-fab md-warn" aria-label="Search" title="Search CEP" ng-click="searchCEP(address.cep)">
+			class="md-fab" aria-label="Search" title="Search CEP" ng-click="searchCEP(address.cep)">
 		<md-icon>search</md-icon> </md-button>
 		<div ng-messages="addressForm.cep.$error" role="alert" multiple>
 			<div ng-message="required">Required information!</div>
@@ -67,7 +67,7 @@
 		</md-input-container>
 		<md-input-container class="md-block"> <label>
 			Number </label> <md-icon>local_convenience_store</md-icon> <input
-			ng-model="address.number" name="number" required="required">
+			ng-model="address.number" name="number" type="number" required="required">
 		<div ng-messages="addressForm.number.$error" role="alert" multiple>
 			<div ng-message="required">Required information!</div>
 		</div>

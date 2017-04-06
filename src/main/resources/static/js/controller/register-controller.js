@@ -12,10 +12,15 @@
 			cpf : "164.555.398-18",
 			email : "jrcesar4@gmail.com"
 		};
+		
+		$scope.address = { };
 
-		$scope.registerValidated = false;
-		$scope.validate = Validate;
 		$scope.selectedIndex = 0;
+		$scope.registerValidated = false;
+		$scope.validateRegister = ValidateRegister;
+		$scope.addressValidated = false;
+		$scope.validateAddress = ValidateAddress;
+		
 		$scope.searchCEP = SearchCEP;
 		$scope.cleanAttributes = CleanAttributes; 
 
@@ -30,8 +35,8 @@
 			}
 		});
 
-		function Validate(register) {
-			if (isCompleted(register)) {
+		function ValidateRegister(register) {
+			if (isRegisterCompleted(register)) {
 				$http({
 					method : 'POST',
 					data : this.register,
@@ -64,6 +69,37 @@
 								});
 			}
 		}
+		
+		function ValidateAddress(address) {
+			$log.debug(address);
+			if (isAddressCompleted(address)) {
+				$http({
+					method : 'POST',
+					data : this.address,
+					url : 'validateaddress'
+				})
+						.then(
+								function successCallback(response) {
+									$scope.addressvalidated = true;
+									$log.debug(response.data);
+									showSimpleToast("Data validated !");
+								},
+								function errorcallback(response) {
+									$scope.addressValidated = false;
+									if (isAddressCompleted(address)) {
+										if (response.status == "400") {
+											for (error in response.data.errors) {
+												showSimpleToast(response.data.errors[error].defaultMessage);
+												$scope.addressForm.cpf
+														.$setValidity(
+																response.data.errors[error].field,
+																false);
+											}
+										}
+									}
+								});
+			}
+		}
 
 		function SearchCEP(cep) {
 			var uri = 'https://viacep.com.br/ws/' + cep + '/json/';
@@ -78,9 +114,13 @@
 			});
 		}
 
-		function isCompleted(register) {
+		function isRegisterCompleted(register) {
 			return (!register.name == '' && !register.cpf == '' && !register.email == '') ? true
 					: false;
+		}
+		
+		function isAddressCompleted(address) {
+			return true;
 		}
 
 		function showSimpleToast(text) {
@@ -99,6 +139,7 @@
 		function CleanAttributes(){
 			$log.debug('Called')
 			$scope.address.street = '';
+			$scope.address.number = '';
 			$scope.address.complement = '';
 			$scope.address.neighborhood = '';
 			$scope.address.city = '';
