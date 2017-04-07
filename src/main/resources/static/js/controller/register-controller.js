@@ -12,28 +12,44 @@
 			cpf : "164.555.398-18",
 			email : "jrcesar4@gmail.com"
 		};
-		
-		$scope.address = { };
+
+		$scope.address = {};
 
 		$scope.selectedIndex = 0;
 		$scope.registerValidated = false;
 		$scope.validateRegister = ValidateRegister;
 		$scope.addressValidated = false;
 		$scope.validateAddress = ValidateAddress;
-		
-		$scope.searchCEP = SearchCEP;
-		$scope.cleanAttributes = CleanAttributes; 
 
-		$scope.$watch('selectedIndex', function(current, old) {
-			if (current == 0) {
-				$scope.registerValidated = false;
-			} else {
-				if ($scope.registerValidated == false) {
-					showSimpleToast('Please complete data then click next!');
-					$scope.selectedIndex = 0;
+		$scope.searchCEP = SearchCEP;
+		$scope.cleanAttributes = CleanAttributes;
+
+		$scope.$watch('selectedIndex',
+			function(current, old) {
+				if (current > old) {
+					if (current == 1) {
+						if (!$scope.registerValidated) {
+							showSimpleToast('Please complete data then click next!');
+							$scope.selectedIndex = 0;
+						}
+					} else if (current == 2) {
+						if (!$scope.registerValidated) {
+							showSimpleToast('Please complete data then click next!');
+							$scope.selectedIndex = 0;
+						}else if (!$scope.addressValidated) {
+							showSimpleToast('Please complete data then click next!');
+							$scope.selectedIndex = 1;
+						}
+					}
+				} else {
+					if (current == 0) {
+						$scope.registerValidated = false;
+					} else if (current == 1) {
+						$scope.addressValidated = false;
+					}
 				}
-			}
-		});
+	
+			});
 
 		function ValidateRegister(register) {
 			if (isRegisterCompleted(register)) {
@@ -69,7 +85,7 @@
 								});
 			}
 		}
-		
+
 		function ValidateAddress(address) {
 			$log.debug(address);
 			if (isAddressCompleted(address)) {
@@ -80,9 +96,8 @@
 				})
 						.then(
 								function successCallback(response) {
-									$scope.addressvalidated = true;
-									$log.debug(response.data);
-									showSimpleToast("Data validated !");
+									$scope.addressValidated = true;
+									$scope.selectedIndex = 2;
 								},
 								function errorcallback(response) {
 									$scope.addressValidated = false;
@@ -118,7 +133,7 @@
 			return (!register.name == '' && !register.cpf == '' && !register.email == '') ? true
 					: false;
 		}
-		
+
 		function isAddressCompleted(address) {
 			return true;
 		}
@@ -127,16 +142,16 @@
 			$mdToast.show($mdToast.simple().textContent(text).position(
 					'top right').hideDelay(3000));
 		}
-		
-		function CompleteAttributes(data){
+
+		function CompleteAttributes(data) {
 			$scope.address.street = data.logradouro;
 			$scope.address.complement = data.comlemento;
 			$scope.address.neighborhood = data.bairro;
 			$scope.address.city = data.localidade;
 			$scope.address.state = data.uf;
 		}
-		
-		function CleanAttributes(){
+
+		function CleanAttributes() {
 			$log.debug('Called')
 			$scope.address.street = '';
 			$scope.address.number = '';
