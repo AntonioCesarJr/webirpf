@@ -49,7 +49,8 @@
 				<md-button aria-label="Book" class="md-raised"
 					ng-click="loginCtrl.goto('/book')" ng-show="authenticated">
 				<md-icon>location_city</md-icon> Book </md-button>
-				<md-button aria-label="Register" class="md-raised md-primary md-hue-3"
+				<md-button aria-label="Register"
+					class="md-raised md-primary md-hue-3"
 					ng-click="loginCtrl.goto('/register')" ng-show="!authenticated">
 				<md-icon>lock_open</md-icon> Register </md-button>
 				<md-button aria-label="Login" class="md-raised md-primary md-hue-3"
@@ -64,7 +65,7 @@
 		</div>
 		</md-toolbar>
 		<md-divider></md-divider>
-		<ng-view></ng-view>
+		<md-content class="md-padding"> <ng-view></ng-view></md-content>
 	</div>
 </body>
 </html>

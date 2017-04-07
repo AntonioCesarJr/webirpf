@@ -50,10 +50,10 @@
 		<input type="hidden" ng-model="address.id" name="id">
 		<md-input-container class="md-block"> <label>
 			CEP </label> <md-icon>pin_drop</md-icon> <input ng-model="address.cep"
-			name="cep" required="required" ng-change="cleanAttributes()"> 
-			<md-button
-			class="md-fab" aria-label="Search" title="Search CEP" ng-click="searchCEP(address.cep)">
-		<md-icon>search</md-icon> </md-button>
+			name="cep" required="required" ng-change="cleanAttributes()">
+		<md-button class="md-fab" aria-label="Search" title="Search CEP"
+			ng-click="searchCEP(address.cep)"> <md-icon>search</md-icon>
+		</md-button>
 		<div ng-messages="addressForm.cep.$error" role="alert" multiple>
 			<div ng-message="required">Required information!</div>
 		</div>
@@ -67,15 +67,15 @@
 		</md-input-container>
 		<md-input-container class="md-block"> <label>
 			Number </label> <md-icon>local_convenience_store</md-icon> <input
-			ng-model="address.number" name="number" type="number" required="required">
+			ng-model="address.number" name="number" type="number"
+			required="required">
 		<div ng-messages="addressForm.number.$error" role="alert" multiple>
 			<div ng-message="required">Required information!</div>
 		</div>
 		</md-input-container>
 		<md-input-container class="md-block"> <label>
 			Complement </label> <md-icon>beenhere</md-icon> <input
-			ng-model="address.complement" name="complement">
-		</md-input-container>
+			ng-model="address.complement" name="complement"> </md-input-container>
 		<md-input-container class="md-block"> <label>
 			Neighborhood </label> <md-icon>my_location</md-icon> <input
 			ng-model="address.neighborhood" name="neighborhood"
@@ -105,5 +105,85 @@
 			</md-button>
 		</div>
 	</form>
-	</md-whiteframe> </md-content> </md-tab> </md-tabs> </md-content>
+	</md-whiteframe> </md-content> </md-tab> <md-tab label="Confirm"> <md-content class="md-padding">
+	<md-whiteframe class="md-whiteframe-5dp" layout
+		layout-align="center top">
+	<div flex-gt-sm="50" flex>
+		<md-toolbar layout="row" class="md-hue-3">
+		<div class="md-toolbar-tools">
+			<span>Register</span>
+		</div>
+		</md-toolbar>
+		<md-list flex> <md-list-item class="md-3-line"
+			ng-click="null"> <md-icon class="md-avatar-icon">account_circle</md-icon>
+		<div class="md-list-item-text" layout="column">
+			<h2>{{ register.name }}</h2>
+			<p>Name</p>
+		</div>
+		</md-list-item> <md-list-item class="md-3-line" ng-click="null"> <md-icon
+			class="md-avatar-icon">vpn_key</md-icon>
+		<div class="md-list-item-text" layout="column">
+			<h2>{{ register.cpf }}</h2>
+			<p>CPF</p>
+		</div>
+		</md-list-item> <md-list-item class="md-3-line" ng-click="null"> <md-icon
+			class="md-avatar-icon">mail_outline</md-icon>
+		<div class="md-list-item-text" layout="column">
+			<h2>{{ register.email }}</h2>
+			<p>E-Mail</p>
+		</div>
+		</md-list-item> </md-list>
+	</div>
+	<md-divider></md-divider>
+	<div flex-gt-sm="50" flex>
+		<md-toolbar layout="row" class="md-hue-3">
+		<div class="md-toolbar-tools">
+			<span>Address</span>
+		</div>
+		</md-toolbar>
+		<md-list flex> <md-list-item class="md-3-line"
+			ng-click="null"> <md-icon class="md-avatar-icon">pin_drop</md-icon>
+		<div class="md-list-item-text" layout="column">
+			<h2>{{ address.cep }}</h2>
+			<p>CEP</p>
+		</div>
+		</md-list-item> <md-list-item class="md-3-line" ng-click="null"> <md-icon
+			class="md-avatar-icon">traffic</md-icon>
+		<div class="md-list-item-text" layout="column">
+			<h2>{{ address.street }}</h2>
+			<p>Street</p>
+		</div>
+		</md-list-item> <md-list-item class="md-3-line" ng-click="null"> <md-icon
+			class="md-avatar-icon">local_convenience_store</md-icon>
+		<div class="md-list-item-text" layout="column">
+			<h2>{{ address.number }}</h2>
+			<p>Number</p>
+		</div>
+		</md-list-item> <md-list-item class="md-3-line" ng-click="null"> <md-icon
+			class="md-avatar-icon">beenhere</md-icon>
+		<div class="md-list-item-text" layout="column">
+			<h2>{{ address.complement }}</h2>
+			<p>Complement</p>
+		</div>
+		</md-list-item> <md-list-item class="md-3-line" ng-click="null"> <md-icon
+			class="md-avatar-icon">map</md-icon>
+		<div class="md-list-item-text" layout="column">
+			<h2>{{ address.city }}</h2>
+			<p>City</p>
+		</div>
+		</md-list-item> <md-list-item class="md-3-line" ng-click="null"> <md-icon
+			class="md-avatar-icon">public</md-icon>
+		<div class="md-list-item-text" layout="column">
+			<h2>{{ address.state }}</h2>
+			<p>State</p>
+		</div>
+		</md-list-item>
+	</div>
+	</md-list>
+</div>
+</md-whiteframe>
+</md-content>
+</md-tab>
+</md-tabs>
+</md-content>
 </div>
