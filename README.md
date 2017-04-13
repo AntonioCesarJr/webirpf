@@ -2,7 +2,7 @@
 Maven and Spring Boot with Rest Controllers, Security, JPA with Hibernate, Thymeleaf (just for index.html) and Front-End with Angular.
 
 
-##How to Install
+## How to Install
 __ First import files to your prefered IDE (Eclipse, IntelJ, NetBeans).
 __ Then create a MySQL database and use your settings on application.yml file located on resources directory.
 __ Execute Maven Update if necessary.
