@@ -1,8 +1,8 @@
-#Servidor Web
+#Web Server
 server:
     port: 9000
 
-#Banco de dados
+#Database
 spring:
     jpa:
         database: MYSQL
