@@ -17,7 +17,7 @@ angular
 						controller : 'LoginController',
 						controllerAs : 'loginCtrl'
 					}).when('/book', {
-						templateUrl : "/partial/book.html",
+						templateUrl : "/js/book/book.html",
 						controller : 'BookController'
 					}).when('/register', {
 						templateUrl : "/partial/register.html",

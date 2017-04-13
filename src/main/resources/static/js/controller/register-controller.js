@@ -60,16 +60,14 @@
 				})
 						.then(
 								function successCallback(response) {
-									$log.debug(response);
 									$scope.registerValidated = true;
 									$scope.registerForm.cpf.$setValidity("cpf",
 											true);
 									$scope.selectedIndex = 1;
 								},
-								function errorcallback(response) {
-									$log.debug(response);
+								function errorCallback(response) {
 									$scope.registerValidated = false;
-									if (isCompleted(register)) {
+									if (isRegisterCompleted(register)) {
 										if (response.status == "400") {
 											for (error in response.data.errors) {
 												showSimpleToast(response.data.errors[error].defaultMessage);
@@ -87,7 +85,6 @@
 		}
 
 		function ValidateAddress(address) {
-			$log.debug(address);
 			if (isAddressCompleted(address)) {
 				$http({
 					method : 'POST',
@@ -105,10 +102,6 @@
 										if (response.status == "400") {
 											for (error in response.data.errors) {
 												showSimpleToast(response.data.errors[error].defaultMessage);
-												$scope.addressForm.cpf
-														.$setValidity(
-																response.data.errors[error].field,
-																false);
 											}
 										}
 									}
@@ -117,11 +110,10 @@
 		}
 
 		function SearchCEP(cep) {
-			var uri = 'https://viacep.com.br/ws/' + cep + '/json/';
-			$log.debug(uri);
+			var vurl = 'https://viacep.com.br/ws/' + cep + '/json/';
 			$http({
 				method : 'GET',
-				url : 'https://viacep.com.br/ws/' + cep + '/json/'
+				url : vurl
 			}).then(function success(response) {
 				CompleteAttributes(response.data);
 			}, function error(response) {
@@ -135,7 +127,7 @@
 		}
 
 		function isAddressCompleted(address) {
-			return true;
+			return (!address.cep == '') ? true : false;
 		}
 
 		function showSimpleToast(text) {

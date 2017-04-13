@@ -1,7 +1,13 @@
-.img-cards-home {
-	width: 175px;
-	height: auto;
-	border-radius: 10px;
-	margin-left: 15px;
-	margin-bottom: 15px;
+.home-card-subhead {
+	margin-top: 30px;
+	font-size: 30px;
+	font-weight: 500;
+	letter-spacing: .10em;
+	min-height: 270px;
+	line-height: 40px;
+	color: window;
+}
+
+md-card.md-default-theme, md-card{
+	background-color: background;	
 }
