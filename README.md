@@ -10,3 +10,4 @@ Maven and Spring Boot with Rest Controllers, Security, JPA with Hibernate, Thyme
 ##### Access http://localhost:9000 
 ##### If you want to execute login you must insert an user on database. Look file "load.sql" on application root directory. The decripted password is "123456".
 *OBS: The class BookItem is not used on application.*
+
