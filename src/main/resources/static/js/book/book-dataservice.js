@@ -45,7 +45,8 @@
 			return $http({
 				method : 'DELETE',
 				url : 'books/' + book.id
-			}).then(deleteBookSuccess, deleteBoookFailed);
+			}).then(deleteBookSuccess)
+			  .catch(deleteBoookFailed);
 			function deleteBookSuccess(response) {
 				return response;
 			}

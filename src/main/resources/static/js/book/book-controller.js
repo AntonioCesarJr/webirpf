@@ -27,14 +27,22 @@
 		function getBooks() {
 			return BookDataService.getBooks().then(function(response) {
 				vm.books = response.data;
+				return vm.books;
 			})
 		}
 
 		function saveBook(book) {
 			vm.showHints = false;
-			return BookDataService.saveBook(book).then(function(response) {
-				cleanForm();
-				getBooks();
+			return BookDataService.saveBook(book)
+			.then(function(response) {
+				if (response.status == "200"){
+					cleanForm();
+					getBooks();
+					showSimpleToast('Saved with success !!');
+				}else{
+					$log.debug(response);
+					vm.showHints = true;
+				}
 			})
 		}
 
@@ -42,9 +50,15 @@
 			if (confirm("Are you sure! " + book.name + ' will be deleted!')) {
 				return BookDataService.deleteBook(book).then(
 						function(response) {
-							cleanForm();
-							getBooks();
-						})
+							if (response.status == "200"){
+								cleanForm();
+								getBooks();
+								showSimpleToast('Deleted with success !!');
+							}else{
+								$log.debug(response);
+								showSimpleToast('Deleted failed !!');
+							}
+						});
 			}
 		}
 
@@ -54,6 +68,7 @@
 
 		function cancelForm() {
 			cleanForm();
+			getBooks();
 		}
 
 		function cleanForm() {
@@ -65,7 +80,7 @@
 
 		function showSimpleToast(text) {
 			$mdToast.show($mdToast.simple().textContent(text).position(
-					'top right').hideDelay(3000));
+					'bottom right').hideDelay(3000));
 		}
 	}
 })();
