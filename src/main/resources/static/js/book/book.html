@@ -2,12 +2,12 @@
 	<div flex="30">
 		<md-content flex layout-padding>
 		<form name="bookForm" novalidate method="POST"
-			ng-submit="addBook(book)">
-			<input type="hidden" ng-model="book.id" name="id" />
+			ng-submit="bookCtrl.saveBook(bookCtrl.book)">
+			<input type="hidden" ng-model="bookCtrl.book.id" name="id" />
 			<md-input-container> <label>Name</label> <input
-				ng-model="book.name" required maxlength="50"
+				ng-model="bookCtrl.book.name" required maxlength="50"
 				name="name" />
-			<div ng-messages="bookForm.name.$error" ng-show="showHints">
+			<div ng-messages="bookForm.name.$error" ng-show="bookCtrl.showHints">
 				<div ng-message="required">This is required.</div>
 				<div ng-message="md-maxlength">The description must be less
 					than 50 characters long.</div>
@@ -16,7 +16,7 @@
 			<div>
 				<md-button class="md-fab md-primary" type="submit" aria-label="Save"
 					title="Save"> <md-icon>save</md-icon> </md-button>
-				<md-button class="md-fab md-warn" ng-click="cancelForm()"
+				<md-button class="md-fab md-warn" ng-click="bookCtrl.cancelForm()"
 					aria-label="Clear" title="Clear"> <md-icon>clear</md-icon>
 				</md-button>
 			</div>
@@ -27,13 +27,13 @@
 		<md-content> <md-list flex> <md-subheader
 			class="md-no-sticky">Books / <span><b>Total
 				= </b></span> <span align="center">{{length}}</span></md-subheader> <md-list-item
-			class="md-3-line" ng-repeat="book in books" ng-click="null">
+			class="md-3-line" ng-repeat="book in bookCtrl.books" ng-click="null">
 		<div class="md-list-item-text" layout="row">
 			<span>{{book.id}}</span>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<span>{{book.name}}</span>
 		</div>
-		<md-button ng-click="deleteBook(book)" aria-label="Delete"
+		<md-button ng-click="bookCtrl.deleteBook(bookCtrl.book)" aria-label="Delete"
 			title="Delete" class="md-fab md-warn"> <md-icon>delete_forever</md-icon>
-		</md-button> <md-button ng-click="editBook(book)" aria-label="Edit" title="Edit"
+		</md-button> <md-button ng-click="bookCtrl.editBook(book)" aria-label="Edit" title="Edit"
 			class="md-fab md-accent"> <md-icon>edit</md-icon> </md-button> </md-list-item> </md-list> </md-content>
 	</div>
 	<div flex="10"></div>

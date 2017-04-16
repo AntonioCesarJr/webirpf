@@ -2,77 +2,70 @@
 	angular.module('webirpf').controller('BookController', BookController);
 
 	'use strict';
-	BookController.$inject = [ '$scope', '$http', '$log', '$location' ];
+	BookController.$inject = [ 'BookDataService', '$scope', '$mdToast', '$log' ];
 
-	function BookController($scope, $http, $log, $location) {
-		$scope.books = {};
-		$scope.book = {};
-		$scope.length = null;
-		$scope.loadBooks = LoadBooks;
-		$scope.addBook = AddBook;
-		$scope.deleteBook = DeleteBook;
-		$scope.editBook = EditBook;
-		$scope.cancelForm = CancelForm;
-		$scope.showHints = false;
+	function BookController(BookDataService, $scope, $mdToast, $log) {
 
-		function LoadBooks() {
-			$http.get('/books').then(function(response) {
-				$scope.books = response.data;
-				$scope.length = response.data.length;
-				$log.debug(response);
-			}, function(error) {
-				$location.path("login");
+		var vm = this;
+		vm.books = {};
+		vm.book = {};
+		vm.getBooks = getBooks;
+		vm.saveBook = saveBook;
+		vm.deleteBook = deleteBook;
+		vm.editBook = editBook;
+		vm.cancelForm = cancelForm;
+		vm.showHints = false;
+
+		activate();
+
+		function activate() {
+			getBooks().then(function() {
+				$log.debug('Activated Book View');
 			});
 		}
 
-		function AddBook(book) {
-			$scope.showHints = false;
-			$http({
-				method : 'POST',
-				data : this.book,
-				url : 'books'
-			}).then(function successCallback(response) {
+		function getBooks() {
+			return BookDataService.getBooks().then(function(response) {
+				vm.books = response.data;
+			})
+		}
+
+		function saveBook(book) {
+			vm.showHints = false;
+			return BookDataService.saveBook(book).then(function(response) {
 				CleanForm();
-				LoadBooks();
-				$log.debug(response);
-			}, function errorcallback(response) {
-				$scope.showHints = true;
-				$log.debug(response);
-			});
+				getBooks();
+			})
 		}
 
-		function DeleteBook(book) {
+		function deleteBook(book) {
 			if (confirm("Are you sure! " + book.name + ' will be deleted!')) {
-				$http({
-					method : 'DELETE',
-					url : 'books/' + this.book.id
-				}).then(function successCallback(response) {
-					CleanForm();
-					LoadBooks();
-					$log.debug(response);
-				}, function errorcallback(response) {
-					$log.debug(response);
-				});
+				return BookDataService.deleteBook(book).then(
+						function(response) {
+							CleanForm();
+							getBooks();
+						})
 			}
 		}
 
-		function EditBook(book) {
-			$scope.book = book;
+		function editBook(book) {
+			vm.book = book;
 		}
 
 		function CancelForm() {
 			CleanForm();
-			LoadBooks();
 		}
 
 		function CleanForm() {
 			$scope.bookForm.$setPristine();
 			$scope.bookForm.$setUntouched();
-			$scope.showHints = false;
-			$scope.book = {};
+			vm.showHints = false;
+			vm.book = {};
 		}
 
-		LoadBooks();
-		$log.debug('Book Controller Is Loaded !');
+		function showSimpleToast(text) {
+			$mdToast.show($mdToast.simple().textContent(text).position(
+					'top right').hideDelay(3000));
+		}
 	}
 })();
