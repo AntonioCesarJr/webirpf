@@ -33,7 +33,7 @@
 		function saveBook(book) {
 			vm.showHints = false;
 			return BookDataService.saveBook(book).then(function(response) {
-				CleanForm();
+				cleanForm();
 				getBooks();
 			})
 		}
@@ -42,7 +42,7 @@
 			if (confirm("Are you sure! " + book.name + ' will be deleted!')) {
 				return BookDataService.deleteBook(book).then(
 						function(response) {
-							CleanForm();
+							cleanForm();
 							getBooks();
 						})
 			}
@@ -52,11 +52,11 @@
 			vm.book = book;
 		}
 
-		function CancelForm() {
-			CleanForm();
+		function cancelForm() {
+			cleanForm();
 		}
 
-		function CleanForm() {
+		function cleanForm() {
 			$scope.bookForm.$setPristine();
 			$scope.bookForm.$setUntouched();
 			vm.showHints = false;
