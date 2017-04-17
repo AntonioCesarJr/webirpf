@@ -48,8 +48,8 @@
 
 		function deleteBook(book) {
 			if (confirm("Are you sure! " + book.name + ' will be deleted!')) {
-				return BookDataService.deleteBook(book).then(
-						function(response) {
+				return BookDataService.deleteBook(book)
+					.then(function(response) {
 							if (response.status == "200"){
 								cleanForm();
 								getBooks();
