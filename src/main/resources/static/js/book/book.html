@@ -25,7 +25,7 @@
 	<div flex="70">
 		<md-content> <md-list flex> <md-subheader
 			class="md-no-sticky">Books / <span><b>Total
-				= </b></span> <span align="center">{{length}}</span></md-subheader> <md-divider></md-divider>
+				= </b></span> <span align="center">{{bookCtrl.books.length}}</span></md-subheader> <md-divider></md-divider>
 		<md-list-item class="md-3-line" ng-repeat="book in bookCtrl.books"
 			ng-click="null">
 		<div class="md-list-item-text" layout="row">
