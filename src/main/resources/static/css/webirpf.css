@@ -5,9 +5,9 @@
 	letter-spacing: .10em;
 	min-height: 270px;
 	line-height: 40px;
-	color: window;
+	color: white;
 }
 
 md-card.md-default-theme, md-card{
-	background-color: background;	
+	background-color: ;	
 }

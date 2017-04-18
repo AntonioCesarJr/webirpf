@@ -45,8 +45,14 @@ public class BookRestController {
 		}
 	}
 
+	@RequestMapping(value = "/books", method = RequestMethod.PUT)
+	public ResponseEntity<Book> put(@RequestBody Book book) {
+		bookRepository.save(book);
+		return new ResponseEntity<>(book, HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/books", method = RequestMethod.POST)
-	public ResponseEntity<Book> save(@RequestBody Book book) {
+	public ResponseEntity<Book> post(@RequestBody Book book) {
 		bookRepository.save(book);
 		return new ResponseEntity<>(book, HttpStatus.OK);
 	}

@@ -2,57 +2,15 @@
 	angular.module('webirpf').factory('BookDataService', BookDataService);
 
 	'use strict'
-	BookDataService.$inject = ['$http'];
+	BookDataService.$inject = ['$resource'];
 	
-	function BookDataService($http){
+	function BookDataService($resource){
 		
-		return {
-			getBooks : getBooks,
-			saveBook : saveBook,
-			deleteBook : deleteBook
-		}	
-		
-		function getBooks(){
-			return $http({
-				method : 'GET',
-				url : '/books'
-			}).then(getBooksComplete)
-			  .catch(getBooksFailed);
-			function getBooksComplete(response){
-				return response;
-			}
-			function getBooksFailed(error){
-				return error;
-			}
-		}
-		
-		function saveBook(book){
-			return $http({
-				method : 'POST',
-				data : book,
-				url : '/books'
-			}).then(saveBookSuccess)
-			  .catch(saveBookFailed);
-			function saveBookSuccess(response){
-				return response;
-			}
-			function saveBookFailed(error){
-				return error;
-			}
-		}
-		
-		function deleteBook(book){
-			return $http({
-				method : 'DELETE',
-				url : 'books/' + book.id
-			}).then(deleteBookSuccess)
-			  .catch(deleteBoookFailed);
-			function deleteBookSuccess(response) {
-				return response;
-			}
-			function deleteBoookFailed(error) {
-				return error;
-			}
-		}
+		return $resource('/books/:id', {id: '@_id'}, {
+			query:  {method:'GET', params:{id:''}, isArray:true},
+			post: {method:'POST'},
+		    update: {method:'PUT'},
+		    remove: {method:'DELETE'}
+		});		
 	}
 })();

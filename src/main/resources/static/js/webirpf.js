@@ -36,7 +36,7 @@ angular
 			});
 			$mdThemingProvider.definePalette('neonRed', neonRedMap);
 
-			$mdThemingProvider.theme('default').warnPalette('red').backgroundPalette('blue-grey');
+			$mdThemingProvider.theme('default').primaryPalette('orange').accentPalette('blue').warnPalette('red').backgroundPalette('indigo');
 
 		}).run(function($log) {
 			$log.debug("Congratulations !! WebSite is running!");
