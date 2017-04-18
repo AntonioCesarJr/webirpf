@@ -14,6 +14,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class UserApp implements UserDetails {
 
@@ -38,6 +40,7 @@ public class UserApp implements UserDetails {
 
 	@NotEmpty
 	@Column(nullable = false)
+	@JsonIgnore
 	private String passwd;
 
 	@OneToMany(fetch = FetchType.EAGER)
