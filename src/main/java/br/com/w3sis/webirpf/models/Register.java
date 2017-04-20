@@ -1,5 +1,7 @@
 package br.com.w3sis.webirpf.models;
 
+import java.util.UUID;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
@@ -16,8 +20,11 @@ import org.hibernate.validator.constraints.br.CPF;
 public class Register {
 
 	@Id
-	@GeneratedValue
-	private Long id;
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator", parameters = {
+			@Parameter(name = "uuid_gen_strategy_class", value = "org.hibernate.id.uuid.CustomVersionOneStrategy") })
+	@Column(unique = true, nullable = false, columnDefinition = "CHAR(36)")
+	private UUID id;
 
 	@NotEmpty
 	@Column(nullable = false, unique = false)
@@ -27,8 +34,8 @@ public class Register {
 	@NotEmpty
 	@Column(nullable = false, unique = true)
 	private String cpf;
-	
-	@Email(message="Invalid E-Mail!")
+
+	@Email(message = "Invalid E-Mail!")
 	@NotEmpty
 	@Column(nullable = false, unique = true)
 	private String email;
@@ -36,11 +43,11 @@ public class Register {
 	@OneToOne(mappedBy = "register", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Address address;
 
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
@@ -59,7 +66,7 @@ public class Register {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}

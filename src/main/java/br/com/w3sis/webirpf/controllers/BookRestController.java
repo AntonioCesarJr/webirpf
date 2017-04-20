@@ -1,6 +1,7 @@
 package br.com.w3sis.webirpf.controllers;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -36,7 +37,7 @@ public class BookRestController {
 	}
 
 	@RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Book> findOne(@PathVariable Long id) {
+	public ResponseEntity<Book> findOne(@PathVariable UUID id) {
 		Book book = bookRepository.findOne(id);
 		if (book == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -59,7 +60,7 @@ public class BookRestController {
 
 	@RequestMapping(value = "/books/{id}", method = RequestMethod.DELETE)
 	@Transactional
-	public ResponseEntity<Book> delete(@PathVariable Long id) {
+	public ResponseEntity<Book> delete(@PathVariable UUID id) {
 		Book book = bookRepository.findOne(id);
 		if (book == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

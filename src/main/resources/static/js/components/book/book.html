@@ -28,8 +28,9 @@
 				= </b></span> <span align="center">{{bookCtrl.books.length}}</span></md-subheader> <md-divider></md-divider>
 		<md-list-item class="md-3-line" ng-repeat="book in bookCtrl.books"
 			ng-click="null">
+			<md-icon  title="{{book.id}}">book</md-icon>
 		<div class="md-list-item-text" layout="row">
-			<span>{{book.id}}</span>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<span>{{book.name}}</span>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span>{{book.name}}</span>
 		</div>
 		<md-button ng-click="bookCtrl.deleteBook(book)" aria-label="Delete"
 			title="Delete" class="md-fab md-warn"> <md-icon>delete_forever</md-icon>

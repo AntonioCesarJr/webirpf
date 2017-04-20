@@ -2,6 +2,7 @@ package br.com.w3sis.webirpf.models;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,18 +24,12 @@ public class UserApp implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
-	public UserApp() {
-
-	}
-
-	public UserApp(Long id, String email) {
-		this.id = id;
-		this.email = email;
-	}
-
 	@Id
-	@GeneratedValue
-	private Long id;
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator", parameters = {
+			@Parameter(name = "uuid_gen_strategy_class", value = "org.hibernate.id.uuid.CustomVersionOneStrategy") })
+	@Column(unique = true, nullable = false, columnDefinition = "CHAR(36)")
+	private UUID id;
 
 	@NotEmpty
 	@Column(nullable = false, unique = true)
@@ -50,11 +47,11 @@ public class UserApp implements UserDetails {
 		return email;
 	}
 
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

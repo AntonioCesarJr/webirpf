@@ -33,6 +33,7 @@
 
 		function saveBook(book) {
 			vm.showHints = false;
+			$log.debug("Aqui porrra " + book.id);
 			if (book.id == undefined) {
 				return BookDataService.post(book, success, failed);
 				function success(response) {
