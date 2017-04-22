@@ -1,4 +1,4 @@
-package br.com.w3sis.webirpf;
+package br.com.w3sis.webirpf.exercises;
 
 import java.io.BufferedReader;
 import java.io.IOException;
