@@ -1,5 +1,6 @@
 package br.com.w3sis.webirpf.models;
 
+import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 
@@ -9,9 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,9 +35,24 @@ public class Book {
 	@Column(nullable = false)
 	private String name;
 
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_date")
+	private Date createdDate;
+
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "updated_date")
+	private Date updatedDate;
+
 	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
 	@JsonIgnore
 	Set<BookItem> bookItems;
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + "]";
+	}
 
 	public UUID getId() {
 		return id;
@@ -54,12 +74,23 @@ public class Book {
 		return bookItems;
 	}
 
-	public void setBookItems(Set<BookItem> bookItems) {
-		this.bookItems = bookItems;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", name=" + name + "]";
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public void setBookItems(Set<BookItem> bookItems) {
+		this.bookItems = bookItems;
 	}
 }

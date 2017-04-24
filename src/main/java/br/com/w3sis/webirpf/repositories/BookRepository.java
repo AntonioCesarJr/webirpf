@@ -16,4 +16,6 @@ public interface BookRepository extends PagingAndSortingRepository<Book, UUID> {
 
 	Collection<Book> findByName(String name);
 
+	Collection<Book> findAllByOrderByCreatedDateAsc();
+
 }

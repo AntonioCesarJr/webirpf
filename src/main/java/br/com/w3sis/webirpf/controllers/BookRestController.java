@@ -27,7 +27,7 @@ public class BookRestController {
 
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public ResponseEntity<Collection<Book>> findAll() {
-		Collection<Book> books = bookRepository.findAll();
+		Collection<Book> books = bookRepository.findAllByOrderByCreatedDateAsc();
 		return new ResponseEntity<>(books, HttpStatus.OK);
 	}
 
