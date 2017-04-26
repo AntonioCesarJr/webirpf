@@ -29,6 +29,7 @@
 <script src="js/controller/menu-controller.js"></script>
 <script src="js/controller/home-controller.js"></script>
 <script src="js/controller/register-controller.js"></script>
+<script src="js/components/sidenav/sidenav-controller.js"></script>
 <script src="js/components/book/book-dataservice.js"></script>
 <script src="js/components/book/book-controller.js"></script>
 <style type="text/css">
@@ -68,8 +69,21 @@
 			<div flex=""></div>
 		</div>
 		</md-toolbar>
-		<md-divider></md-divider>
-		<md-content class="md-padding"> <ng-view></ng-view></md-content>
+		<md-content> <session layout="row"
+			style="border: 2px solid red"> <md-sidenav
+			class="md-sidenav-left" md-component-id="left"
+			md-is-locked-open="$mdMedia('gt-xs')" md-whiteframe="4"
+			ng-show="authenticated" style="border: 5px solid green">
+		<md-toolbar class="md-theme-indigo">
+		<h1 class="md-toolbar-tools">Sidenav Left</h1>
+		</md-toolbar> <md-content layout-padding=""
+			ng-controller="sideNavController as sdCtrl"> <md-button
+			ng-click="close()" class="md-primary" hide-gt-md="">
+		Close Sidenav Left </md-button>
+		<p hide="" show-gt-md="">This sidenav is locked open on your
+			device. To go back to the default behavior, narrow your display.</p>
+		</md-content> </md-sidenav> <ng-view flex="flex"></ng-view> </session> </md-content>
+		<!-- </section> -->
 	</div>
 </body>
 </html>
