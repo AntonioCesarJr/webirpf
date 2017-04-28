@@ -48,9 +48,6 @@
 				<md-button aria-label="Home" class="md-raised"
 					ng-click="loginCtrl.goto('/home')"> <md-icon>home</md-icon>
 				Home</md-button>
-				<md-button aria-label="Book" class="md-raised"
-					ng-click="loginCtrl.goto('/book')" ng-show="authenticated">
-				<md-icon>location_city</md-icon> Book </md-button>
 				<md-button aria-label="Register"
 					class="md-raised md-primary md-hue-3"
 					ng-click="loginCtrl.goto('/register')" ng-show="!authenticated">
@@ -69,20 +66,20 @@
 			<div flex=""></div>
 		</div>
 		</md-toolbar>
-		<md-content> <session layout="row"
-			style="border: 2px solid red"> <md-sidenav
-			class="md-sidenav-left" md-component-id="left"
-			md-is-locked-open="$mdMedia('gt-xs')" md-whiteframe="4"
-			ng-show="authenticated" style="border: 5px solid green">
-		<md-toolbar class="md-theme-indigo">
-		<h1 class="md-toolbar-tools">Sidenav Left</h1>
-		</md-toolbar> <md-content layout-padding=""
-			ng-controller="sideNavController as sdCtrl"> <md-button
-			ng-click="close()" class="md-primary" hide-gt-md="">
-		Close Sidenav Left </md-button>
-		<p hide="" show-gt-md="">This sidenav is locked open on your
-			device. To go back to the default behavior, narrow your display.</p>
-		</md-content> </md-sidenav> <ng-view flex="flex"></ng-view> </session> </md-content>
+		<md-content> <session layout="row">
+		<div ng-controller="sideNavController as sdCtrl">
+			<md-button ng-click="sdCtrl.toggleLeft()" class="md-raised" ng-show="authenticated">
+			Toggle Sidenav </md-button>
+			<md-sidenav md-component-id="md-sidenav"
+				md-whiteframe="4" ng-show="authenticated"> <md-toolbar
+				class="md-theme-indigo">
+			<h1 class="md-toolbar-tools">Sidenav Left</h1>
+			</md-toolbar> <md-content layout-padding=""> <md-button
+				aria-label="Book" class="md-raised"
+				ng-click="goto('/book')" ng-show="authenticated">
+			<md-icon>location_city</md-icon> Book </md-button> </md-content> </md-sidenav>
+		</div>
+		<ng-view flex="flex"></ng-view> </session> </md-content>
 		<!-- </section> -->
 	</div>
 </body>

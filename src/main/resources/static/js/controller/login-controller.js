@@ -12,6 +12,8 @@
 			$location.url(page);
 		};
 		
+		$rootScope.goto = self.goto;
+		
 		function showSimpleToast(text) {
 		    $mdToast.show(
 		      $mdToast.simple()
