@@ -23,9 +23,8 @@ public class Solution {
 		}
 
 		List<String> stones = new ArrayList<>();
-		Integer val = Integer.parseInt(QtdStones);
 
-		for (int i = 1; i <= val; i++) {
+		for (int i = 1; i <= Integer.parseInt(QtdStones); i++) {
 			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 			String stone = new String();
 			try {
@@ -44,28 +43,21 @@ public class Solution {
 
 	private static Integer countPrecious(List<String> stones) {
 		List<Character> precious = new ArrayList<>();
-		List<Character> ordinary = new ArrayList<>();
-		for (int actual = 0; actual <= stones.size() - 1; actual++) {
-			List<Character> elements = stones.get(actual).chars().mapToObj(e -> (char) e).collect(Collectors.toList());
-			for (int i = 0; i <= elements.size() - 1; i++) {
-				boolean isPrecious = false;
-				for (int idx = 0; idx <= stones.size() - 1; idx++) {
-					if (actual != idx) {
-						if (!precious.contains(elements.get(i)) && !ordinary.contains(elements.get(i))) {
-							isPrecious = true;
-							if (stones.get(idx).indexOf(elements.get(i)) == -1) {
-								isPrecious = false;
-								ordinary.add(elements.get(i));
-								break;
-							}
-						}
-					}
-				}
-				if (isPrecious) {
-					precious.add(elements.get(i));
+		List<Character> distinctElementsOfFirstStone = stones.get(0).chars().mapToObj(e -> (char) e)
+				.collect(Collectors.toList()).stream().distinct().collect(Collectors.toList());
+		distinctElementsOfFirstStone.forEach(element -> {
+			boolean isSpecial = true;
+			for (int i = 1; i <= stones.size() - 1; i++) {
+				System.out.println("Looking for '" + element + "' in stone '" + stones.get(i) + "'");
+				if (stones.get(i).indexOf(element) == -1) {
+					isSpecial = false;
+					continue;
 				}
 			}
-		}
+			if (isSpecial && !precious.contains(element)) {
+				precious.add(element);
+			}
+		});
 		return precious.size();
 	}
 

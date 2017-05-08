@@ -1,1 +1,1 @@
-./mvnw clean package && java -jar target/webirpf-0.0.1-SNAPSHOT.jar
+./mvnw clean package && ./mvnw spring-boot:run
